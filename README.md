@@ -2,16 +2,15 @@
 ## Goals
 
 * Develop an Application which should resemble Instagram
-The application should have a portfolio page which is used to describe my background and any ties to travelling.
 * Create a Database of User Accounts
-A User should be able to:
-  * create an account
-  * see all image posts
-  * create a new image post with an image and description
-  * edit their own image posts
-  * delete their own image posts
-  * "like" other image posts
-  * comment on their own, or others image posts
+	A User should be able to:
+  	* create an account
+  	* see all image posts
+  	* create a new image post with an image and 	description
+  	* edit their own image posts
+  	* delete their own image posts
+  	* "like" other image posts
+  	* comment on their own, or others image posts
 
 ## Data Models
 
