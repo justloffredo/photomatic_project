@@ -1,0 +1,22 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+	margin: 0;
+	padding: 0;
+	background: url("/app-images/photomatic.jpg") center center fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+
+.template {
+flex: 1 0	auto;
+text-align: center;
+min-height: 100%;
+width: 100%;
+margin: auto;
+}

@@ -2,8 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const sql = require("./utility/sql.js");
 const bodyParser = require('body-parser');
-const personalWebsiteRouter = require("./Routes/personal_website.js");
-const countryAppRouter = require("./Routes/country_app.js");
+const photomaticRouter = require("./Routes/photomatic.js");
 const renderTemplate = require("./utility/renderTemplate.js");
 const app = express();
 
@@ -17,8 +16,7 @@ app.use(bodyParser.json());
 
 
 
-app.use("/", personalWebsiteRouter);
-app.use("/", countryAppRouter);
+app.use("/", photomaticRouter);
 app.get("*", function(req, res) {
 	renderTemplate(res,"404");
 });
