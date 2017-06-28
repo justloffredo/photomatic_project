@@ -20,3 +20,32 @@ min-height: 100%;
 width: 100%;
 margin: auto;
 }
+
+.template-header {
+	background-color: #FFF;
+	height: 15%;
+
+}
+
+
+/*Login Form*/
+
+.Form {
+	position: absolute;
+	margin: 0 auto;
+	width: 30%;
+	padding: 20px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	border-radius: 6px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+input,
+			button {
+				display: block;
+				width: 100%;
+				height: 40%;
+			}
