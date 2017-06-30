@@ -1,7 +1,10 @@
 const sql = require("../utility/sql");
 const Sequelize = require("sequelize");
+const Photos = require("./photos");
+const Comments = require("./comments");
+const Photos = require("./photos");
 
-module.exports = sql.define("user", {
+const Users = sql.define("user", {
 	id: {
 		type: Sequelize.INTEGER,
 		autoIncrement: true,
@@ -17,3 +20,8 @@ module.exports = sql.define("user", {
 	},
 
 });
+
+Users.hasMany(Photos);
+Users.hasMany(Comments);
+
+module.exports = Users;
