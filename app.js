@@ -1,22 +1,34 @@
 require('dotenv').config();
 const express = require('express');
-const sql = require("./utility/sql.js");
 const bodyParser = require('body-parser');
-const photomaticRouter = require("./Routes/photomatic.js");
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const connectSessionSequelize = require('connect-session-sequelize');
+const deserializeUserMW = require("./middleware/deSerialize.js");
+
+const sql = require("./utility/sql.js");
 const renderTemplate = require("./utility/renderTemplate.js");
+
 const app = express();
+const SessionStore = connectSessionSequelize(session.Store);
+
+const photoRoutes = require("./Routes/photos.js");
+const userRoutes = require("./Routes/user.js");
+
+
 
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
-
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(deserializeUserMW);
 
 
 
 
-app.use("/", photomaticRouter);
+
+
+app.use("/user", userRoutes);
+app.use("/photo", photoRoutes);
 app.get("*", function(req, res) {
 	renderTemplate(res,"404");
 });
