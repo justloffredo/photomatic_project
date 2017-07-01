@@ -2,7 +2,7 @@ const sql = require("../utility/sql");
 const Sequelize = require("sequelize");
 const Photos = require("./photos");
 const Comments = require("./comments");
-const Photos = require("./photos");
+
 
 const Users = sql.define("user", {
 	id: {

@@ -2,6 +2,7 @@ const sql = require("../utility/sql");
 const Sequelize = require("Sequelize");
 const Tags = require("./tags");
 const Comments = require("./comments");
+const Likes = require("./likes");
 
 const Photos = sql.define("photo", {
 	id: {
@@ -16,11 +17,11 @@ const Photos = sql.define("photo", {
 	originalName: {
 		type: Sequelize.STRING,
 		notNull: true,
-	}
+	},
 	mimeType: {
 		type: Sequelize.STRING,
 		notNull: true,
-	}
+	},
 });
 
 Tags.belongsToMany(Photos, { through: "photos_tags" });
