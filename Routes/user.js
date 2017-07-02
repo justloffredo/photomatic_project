@@ -4,7 +4,6 @@ const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
 router.post("/signup", function(req,res) {
-	
 });
 
 router.get("/login", function(req, res) {
@@ -15,7 +14,6 @@ router.get("/login", function(req, res) {
 
 router.get("/signup", function(req, res) {
 	renderTemplate(res, "signup", "Signup", {
-		error: error,
 
 	});
 });
