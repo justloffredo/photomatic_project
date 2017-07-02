@@ -16,22 +16,24 @@
 
 ### 'users'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`user`                 | STRING (NOT NULL)    |
-|`password`             | STRING (NOT NULL)    |
+| Column                | Type                	          |
+|-----------------------|---------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)           |
+|`username`             | STRING(100) (NOT NULL)(UNIQUE)  |
+|`password`             | STRING(1000) (NOT NULL)         |
 
 * ONE to MANY relationship with photos
 * ONE to MANY relationship comments
 
 ### 'photos'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`image`                | BLOB (NOT NULL)      |
-|`description`          | STRING (NOT NULL)    |
+| Column                | Type                      |
+|-----------------------|---------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)     |
+|`size`                	| INTEGER (NOT NULL)        |
+|`originalName`         | STRING (NOT NULL)         |
+|`mimeType`             | STRING (NOT NULL)         |
+|`description`          | STRING (500)(NOT NULL)    |
 
 * ONE to MANY relationship with photos comments
 * MANY to MANY relationship with tags
@@ -40,10 +42,10 @@
 
 ### 'comments'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`body`                 | STRING (NOT NULL)    |
+| Column                | Type                   |
+|-----------------------|------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)  |
+|`text`                 | STRING (NOT NULL)(250) |
 
 * MANY to ONE relationship with photos
 * MANY to ONE relationship with user
@@ -53,30 +55,28 @@
 
 ### 'tags'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`tag`                  | STRING (NOT NULL)    |
+| Column                | Type                         |
+|-----------------------|------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)        |
+|`name`                 | STRING (NOT NULL)(UNIQUE)    |
 
 * MANY to MANY relationship with photos
 
 
-### 'photoLikes'
+### 'Likes'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`photolike`            | INTEGER (NOT NULL)   |
+| Column                | Type                                |
+|-----------------------|-------------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)(AUTOINCREMENT)|
 
 * MANY to ONE relationship with photos
 
 
 ### 'commentLikes'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`commentlike`          | INTEGER (NOT NULL)   |
+| Column                | Type                               |
+|-----------------------|------------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)(AUTOINCREMENT|
 
 * MANY to ONE relationship with comments
 
@@ -139,7 +139,6 @@
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `id`                  | Primary key for the user being created. A new id will be made.                              |
 | `username`            | User name created to assign to account.                                                     |
 | `password`            | Password created to sign into acount.                                                       |
 
