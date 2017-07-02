@@ -2,7 +2,24 @@
 	box-sizing: border-box;
 }
 
-body {
+/* ERROR PAGE TEXT
+**
+***/
+
+.error {
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* TEMPLATE
+**
+***/
+
+.bodytemp {
   display: flex;
   flex-direction: column;
 	margin: 0;
@@ -21,14 +38,30 @@ width: 100%;
 margin: auto;
 }
 
+i {
+	float: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
 .template-header {
 	background-color: #FFF;
 	height: 15%;
-
+	text-align: right;
 }
 
+footer {
+color: white;
+text-shadow:
+-1px -1px 0 #000,
+1px -1px 0 #000,
+-1px 1px 0 #000,
+1px 1px 0 #000;
+}
 
-/*Login Form*/
+/*Login Form
+**
+***/
 
 .Form {
 	position: absolute;

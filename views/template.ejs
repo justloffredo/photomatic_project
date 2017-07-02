@@ -1,33 +1,42 @@
 <!DOCTYPE HTML/>
 <html>
   <head>
-    <title>Photomatica</title>
+    <title>Photomatic</title>
+
+<!--CSS
+--------------------------------------------------------->
     <meta name="viewport" content="width-device-width, initial scale=1">
 		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
     <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+    <link rel="stylesheet" types="text.css" href="/css/normalize.css">
+    <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+    <link rel="stylesheet" types="text.css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body>
+  <body class = "bodytemp">
 
+<!--Navigation Bar
+--------------------------------------------------------->
 	<div class = "template">
     <div class = "template-header">
-      <nav>
-        <a href ="/">Home</a>
-        <a href = "/">Explore</a>
-        <a href = "/">Post</a>
-        <a href = "/login">Login</a>
-      </nav>
+      <!-- <nav> -->
+        <i class="fa fa-camera fa-2x" aria-hidden="true">Photomatic</i>
 
+          <a href ="/">Sign Up</a>
+          <a href = "/login">Login</a>
+          <a href = "/">Upload</a>
+          <a href = "/">Search</a>
+      <!-- </nav> -->
 		 </div>
 
         <main class= "template-main">
 			    <%-include("pages/" + page, args);%>
 		    </main>
 
+<!-- Footer
+--------------------------------------------------------->
 
-        <footer class= "template-footer">
-
-        </footer>
+        <footer>Photomatica 2017</footer>
 	</div>
 
 
