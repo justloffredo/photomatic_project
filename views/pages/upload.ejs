@@ -1,0 +1,9 @@
+<form class="upload" enctype="multipart/form-data" method="post">
+	<% if (typeof error !== "undefined") { %>
+		<p class="upload-error">
+			<%- error %>
+		</p>
+	<% } %>
+	<input type="file" name="file"/>
+	<button>Upload</button>
+</form>
