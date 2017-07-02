@@ -10,6 +10,7 @@ const sql = require("./utility/sql.js");
 const renderTemplate = require("./utility/renderTemplate.js");
 
 const app = express();
+const cookieSecret = process.env.COOKIE_SECRET || "dev";
 const SessionStore = connectSessionSequelize(session.Store);
 
 const photoRoutes = require("./Routes/photos.js");
@@ -20,6 +21,13 @@ const userRoutes = require("./Routes/user.js");
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(cookieSecret));
+app.use(session({
+	secret: cookieSecret,
+	store: new SessionStore({ db:sql }),
+}));
+
+
 // app.use(deserializeUserMW);
 
 

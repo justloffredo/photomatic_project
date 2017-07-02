@@ -1,7 +1,10 @@
-<form class = "Form">
+<form class = "Form" method= "post">
+	<% if(typeof error !== undefined) { %>
+		<div class= "error"><%= error %></div>
+	<%}%>
 		Username
-		<input class="login-username" type="text" name = "login-username" placeholder="Please Enter Your Username"></input><br>
+		<input class="login-username" type="text" name = "username" placeholder="Please Enter Your Username"></input><br>
 		Password
-		<input class="login-password" type="text" name = "login-password" 					placeholder="Please Enter Your Password"></input><br>
+		<input class="login-password" type="password" name = "password" 					placeholder="Please Enter Your Password"></input><br>
 	<button>Submit</button>
 </form>
