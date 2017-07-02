@@ -117,7 +117,7 @@
 * Provides a link to signup page if user does not have an account
 
 
-### POST `/login`
+### POST `user/login`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
@@ -125,9 +125,9 @@
 | `password`            | Password input to verify account                                                            |
 
 * Endpoint for submitting an account creation post form
-* Upon success, redirects to `/photomatic`
+* Upon success, redirects to `/user`
 
-### GET `/signup`
+### GET `user/signup`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
@@ -135,7 +135,7 @@
 
 * Displays a page with a signup form for creating an account with a username and password.
 
-### POST `/signup`
+### POST `/user/signup`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
@@ -150,20 +150,21 @@
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `No argument`         | No argument                                                                                 |
+| `user`         	| Specifies which user is being displayed based on the user logged into the session           |
 
 * Displays a page with a user and the photos which they have submitted
+* If the user isn't logged into a session, redirects back to 'user/login'
 
-### POST `/user`
+### POST `/user/post`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `id`                  | Primary key for the photo being posted. A new id will be made                               |
 | `photo`               | Photo to be posted to the application by the user                                           |
+| `description`         | Description to be associated to the photo being posted.                                     |
 | `tag`                 | Tag to be associated to the photo being posted, based on a specified topic                  |
 
 * Endpoint for submitting a photo being posted by the user with any associated tags
-* Upon success, redirects to `/`
+* Upon success, redirects to `/user` with posted photo
 
 
 ## Inspiration
