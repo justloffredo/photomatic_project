@@ -22,6 +22,9 @@ const Photos = sql.define("photo", {
 		type: Sequelize.STRING,
 		notNull: true,
 	},
+	description: {
+		type: Sequelize.STRING(500),
+		}
 });
 
 Tags.belongsToMany(Photos, { through: "photos_tags" });

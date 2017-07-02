@@ -13,9 +13,10 @@ const Users = sql.define("user", {
 	username: {
 		type: Sequelize.STRING(100),
 		notNull: true,
+		unique: true,
 	},
 	password: {
-		type: Sequelize.STRING(100),
+		type: Sequelize.STRING(1000),
 		notNull: true,
 	},
 
