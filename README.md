@@ -33,7 +33,7 @@
 |`size`                	| INTEGER (NOT NULL)        |
 |`originalName`         | STRING (NOT NULL)         |
 |`mimeType`             | STRING (NOT NULL)         |
-|`description`          | STRING (500)(NOT NULL)    |
+|`description`          | STRING (500)              |
 
 * ONE to MANY relationship with photos comments
 * MANY to MANY relationship with tags
