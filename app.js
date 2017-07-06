@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const connectSessionSequelize = require('connect-session-sequelize');
-const deserializeUserMW = require("./middleware/deSerialize.js");
 
-const sql = require("./utility/sql.js");
+
+const sql = require('./utility/sql.js');
+const deserializeUserMW = require('./middleware/deSerialize.js');
 const renderTemplate = require("./utility/renderTemplate.js");
 
 const app = express();
+//References app.use(cookieParser...) and app.us(session...) below
 const cookieSecret = process.env.COOKIE_SECRET || "dev";
 const SessionStore = connectSessionSequelize(session.Store);
 
@@ -26,17 +28,17 @@ app.use(session({
 	secret: cookieSecret,
 	store: new SessionStore({ db:sql }),
 }));
-
-
-// app.use(deserializeUserMW);
-
+app.use(deserializeUserMW);
 
 
 
 
 
-app.use("/user", userRoutes);
-app.use("/photo", photoRoutes);
+
+
+
+app.use("/", userRoutes);
+app.use("/", photoRoutes);
 app.get("*", function(req, res) {
 	renderTemplate(res,"404");
 });
