@@ -55,11 +55,10 @@ router.post("/login", function(req, res) {
 
 router.get("/signup", function(req, res, error) {
 	renderTemplate(res, "signup", "Signup", {
-<<<<<<< HEAD
-=======
+		
 	});
 });
->>>>>>> justin-userauthentication
+
 
 
 router.post("/signup", function(req,res) {

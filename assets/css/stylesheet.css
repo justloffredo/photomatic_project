@@ -16,6 +16,12 @@
 		0px 0px 18px rgba(0,0,0,0.9);
 }
 
+.errorphoto {
+	object-fit: contain;
+	height: auto;
+	width: 33%;
+}
+
 /* TEMPLATE
 **
 ***/
@@ -76,7 +82,7 @@ text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
 text-align: center;
 }
 
-/*Login Form
+/*Login Form & Sign Up Form
 **
 ***/
 
@@ -95,7 +101,13 @@ text-align: center;
 
 }
 
-.login-password, .login-username {
+.username, .password {
+	font-weight: bold;
+}
+
+.login-password, .login-username,
+.signup-username, .username-password,
+.signup-conf-passwor {
 	font-style: italic;
 }
 

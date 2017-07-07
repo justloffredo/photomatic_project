@@ -13,30 +13,32 @@
     <link rel="stylesheet" types="text.css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-
+  <body class = "bodytemp">
 
 <!--Navigation Bar
 --------------------------------------------------------->
 	<div class = "template">
     <div class = "template-header">
-      <body class = "bodytemp">
       <!-- <nav> -->
-        <i class="fa fa-camera fa-2x" aria-hidden="true">Photomatic</i>
+        <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
+        <div class = "photomatic">Photomatic</div>
 
-          <a href ="/">Sign Up</a>
-          <a href = "/login">Login</a>
-          <a href = "/">Upload</a>
-          <a href = "/">Search</a>
+          <a href ="/"><div class = "button" id="signup">Sign Up</div></a>
+          <a href = "/login"><div class= "button" id="login">Login</div></a>
+
       <!-- </nav> -->
 		 </div>
 
         <main class= "template-main">
 			    <%-include("pages/" + page, args);%>
 		    </main>
-</div>
+      </div>
 <!-- Footer
 --------------------------------------------------------->
-<footer>Photomatica 2017</footer>
+
+        <footer>Photomatica 2017</footer>
+
+
 
 </body>
 </html>
