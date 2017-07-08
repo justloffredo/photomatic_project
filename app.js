@@ -17,6 +17,7 @@ const SessionStore = connectSessionSequelize(session.Store);
 
 const photoRoutes = require("./Routes/photos.js");
 const userRoutes = require("./Routes/user.js");
+const apiRoutes = require("./Routes/api");
 
 
 
@@ -36,7 +37,7 @@ app.use(deserializeUserMW);
 
 
 
-
+app.use("/api", apiRoutes);
 app.use("/", userRoutes);
 app.use("/", photoRoutes);
 app.get("*", function(req, res) {
