@@ -31,10 +31,6 @@ app.use(session({
 // app.use(deserializeUserMW);
 
 
-
-
-
-
 app.use("/user", userRoutes);
 app.use("/photo", photoRoutes);
 app.get("*", function(req, res) {

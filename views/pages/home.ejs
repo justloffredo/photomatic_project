@@ -1,0 +1,44 @@
+<!DOCTYPE HTML/>
+<html>
+  <head>
+    <title>Photomatic</title>
+
+<!--CSS
+--------------------------------------------------------->
+    <meta name="viewport" content="width-device-width, initial scale=1">
+		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
+    <link rel="stylesheet" types="text.css" href="/css/landingsheet.css">
+    <link rel="stylesheet" types="text.css" href="/css/normalize.css">
+    <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+    <link rel="stylesheet" types="text.css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body class = "bodytemp" id="back-image">
+
+<!--Navigation Bar
+--------------------------------------------------------->
+	<div class = "template">
+    <div class = "template-header">
+      <!-- <nav> -->
+        <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
+        <div class = "photomatic">Photomatic</div>
+
+          <a href ="/user/signup"><div class = "button" id="signup">Sign Up</div></a>
+          <a href = "/user/login"><div class= "button" id="login">Login</div></a>
+
+      <!-- </nav> -->
+		 </div>
+
+        <main class= "template-main">
+			    <%-include("pages/" + page, args);%>
+		    </main>
+      </div>
+<!-- Footer
+--------------------------------------------------------->
+
+        <footer>Photomatica 2017</footer>
+
+
+
+</body>
+</html>
