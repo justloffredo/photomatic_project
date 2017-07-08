@@ -4,9 +4,7 @@ const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
-<<<<<<< HEAD
-=======
-const User = require("../models/users.js");
+
 const Sequelize = require("sequelize");
 
 const Photo = require("../models/photos");
@@ -26,10 +24,6 @@ router.post("/signup", function(req,res) {
 		res.send("Error");
 	});
 });
->>>>>>> 9c86a56404f543b37327e8e07cb710f7f633909d
-
-
-
 
 
 

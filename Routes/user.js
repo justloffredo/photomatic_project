@@ -41,41 +41,17 @@ router.post("/login", function(req, res) {
 });
 
 
-<<<<<<< HEAD
-router.get("/signup", function(req, res, error) {
-	renderTemplate(res, "signup", "Signup", {
-
-	});
-=======
 router.get("/logout", function(req, res) {
 	req.session.userid = null;
 	req.user = null;
 	console.log(req.session);
 	res.redirect("/");
->>>>>>> 2a84b32cbc081d0cc64ff4d466c654084a204dcb
 });
 
 
 
-<<<<<<< HEAD
-router.post("/signup", function(req,res) {
-	User.create({
-		username: req.body.username,
-		password: req.body.password,
-	})
-	.then(function() {
-		res.redirect("/user/login");
-	})
-	.catch(function(err) {
-		renderTemplate(req, res, "signup", "Signup", {
-			error: "Please ensure all fields are filled in properly",
-		});
-	});
-});
-=======
 
 
->>>>>>> 2a84b32cbc081d0cc64ff4d466c654084a204dcb
 
 
 module.exports = router;
