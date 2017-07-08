@@ -1,8 +1,11 @@
 const sql = require("../utility/sql");
-const Sequelize = require("Sequelize");
+const Sequelize = require("sequelize");
 const Tags = require("./tags");
 const Comments = require("./comments");
 const Likes = require("./likes");
+
+const fs = require("fs");
+
 
 const Photos = sql.define("photo", {
 	id: {
