@@ -4,31 +4,42 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const connectSessionSequelize = require('connect-session-sequelize');
-const deserializeUserMW = require("./middleware/deSerialize.js");
 
-const sql = require("./utility/sql.js");
+
+const sql = require('./utility/sql.js');
+const deserializeUserMW = require('./middleware/deSerialize.js');
 const renderTemplate = require("./utility/renderTemplate.js");
 
 const app = express();
+//References app.use(cookieParser...) and app.us(session...) below
+const cookieSecret = process.env.COOKIE_SECRET || "dev";
 const SessionStore = connectSessionSequelize(session.Store);
 
 const photoRoutes = require("./Routes/photos.js");
 const userRoutes = require("./Routes/user.js");
+const apiRoutes = require("./Routes/api");
 
 
 
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(deserializeUserMW);
+app.use(cookieParser(cookieSecret));
+app.use(session({
+	secret: cookieSecret,
+	store: new SessionStore({ db:sql }),
+}));
+app.use(deserializeUserMW);
 
 
 
 
 
 
-app.use("/user", userRoutes);
-app.use("/photo", photoRoutes);
+
+app.use("/api", apiRoutes);
+app.use("/", userRoutes);
+app.use("/", photoRoutes);
 app.get("*", function(req, res) {
 	renderTemplate(res,"404");
 });

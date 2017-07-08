@@ -9,17 +9,19 @@ router.get("/signup", function(req, res, error) {
 });
 
 router.post("/signup", function(req,res) {
-			User.signup(req)
-			.then(function() {
-				res.redirect("/");
+	User.signup(req)
+			.then(function(user) {
+				res.json ({
+					user : user
+				});
 			})
 			.catch(function(err) {
+				console.error("Encountered an error during the API signup");
 				res.status(400);
-				renderTemplate(req, res, "signup", "Signup", {
-					error: "Please ensure all fields are filled in properly",
-				});
+				res.json({
+					error: "Please ensure all fields are filled in properly" });
 			});
-		});
+});
 
 
 router.get("/login", function(req, res) {
@@ -28,25 +30,25 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
-	User.login(req)
-		.then(function() {
-			res.redirect("/");
+		User.login(req)
+		.then(function(user) {
+			res.json({ user: user });
 		})
 		.catch(function(err) {
+			console.error("Encountered an error during the API login");
 			res.status(400);
-			renderTemplate(res, "login", "Login", {
-				error: err.message,
-			});
+			res.json({
+				error: "Invalid username or password"});
 		});
-});
+	});
 
+	router.get("/logout", function(req, res) {
+			req.session.userid = null;
+			req.user = null;
 
-router.get("/logout", function(req, res) {
-	req.session.userid = null;
-	req.user = null;
-	console.log(req.session);
-	res.redirect("/");
-});
+			console.log(req.session);
+			res.redirect("/");
+	});
 
 
 
