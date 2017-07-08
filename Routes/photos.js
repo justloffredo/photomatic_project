@@ -1,5 +1,6 @@
 const express = require ("express");
 const router = express.Router();
+const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
@@ -33,8 +34,15 @@ router.post("/signup", function(req,res) {
 
 
 router.get("/", function(req, res) {
-	renderTemplate(res, "home", "Home", {
+	if(req.user) {
+		console.log(req.user);
+		renderTemplate(res, "home", "Home", {
+
 	});
+}
+	else {
+		res.redirect("/login");
+	}
 });
 
 // upload photo

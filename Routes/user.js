@@ -3,8 +3,24 @@ const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
-router.post("/signup", function(req,res) {
+router.get("/signup", function(req, res, error) {
+	renderTemplate(res, "signup", "Signup", {
+	});
 });
+
+router.post("/signup", function(req,res) {
+			User.signup(req)
+			.then(function() {
+				res.redirect("/");
+			})
+			.catch(function(err) {
+				res.status(400);
+				renderTemplate(req, res, "signup", "Signup", {
+					error: "Please ensure all fields are filled in properly",
+				});
+			});
+		});
+
 
 router.get("/login", function(req, res) {
 	renderTemplate(res, "login", "Login", {
@@ -12,55 +28,36 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
-	User.findOne({
-		where: {
-			username: req.body.username,
-		},
-	})
-	.then(function(user) {
-		console.log(user.password);
-		console.log(req.body.password);
-
-		if (user) {
-			user.comparePassword(req.body.password)
-				.then(function(valid) {
-					if (valid) {
-						req.session.user = user;
-						res.redirect("/");
-					}
-					else {
-						renderTemplate(res, "login", "Login", {
-							error: "Incorrect password",
-						});
-					}
-				})
-				.catch(function(err) {
-					console.log(err);
-				});
-		}
-		else {
+	User.login(req)
+		.then(function() {
+			res.redirect("/");
+		})
+		.catch(function(err) {
+			res.status(400);
 			renderTemplate(res, "login", "Login", {
-				error: "Username not found",
-			});
-		}
-	})
-	.catch(function(err) {
-			console.log(err);
-			renderTemplate(res, "login", "Login", {
-				error: "Your database has gone to shit",
+				error: err.message,
 			});
 		});
-	});
+});
 
 
+<<<<<<< HEAD
 router.get("/signup", function(req, res, error) {
 	renderTemplate(res, "signup", "Signup", {
-		
+
 	});
+=======
+router.get("/logout", function(req, res) {
+	req.session.userid = null;
+	req.user = null;
+	console.log(req.session);
+	res.redirect("/");
+>>>>>>> 2a84b32cbc081d0cc64ff4d466c654084a204dcb
 });
 
 
 
+<<<<<<< HEAD
 router.post("/signup", function(req,res) {
 	User.create({
 		username: req.body.username,
@@ -75,6 +72,10 @@ router.post("/signup", function(req,res) {
 		});
 	});
 });
+=======
+
+
+>>>>>>> 2a84b32cbc081d0cc64ff4d466c654084a204dcb
 
 
 module.exports = router;
