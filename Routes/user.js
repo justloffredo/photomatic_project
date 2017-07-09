@@ -1,14 +1,18 @@
 const express = require("express");
 const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
+// const requireLoggedOut = require("../middleware/requireLoggedOut");
+
 const router = express.Router();
+// router.use(requireLoggedOut);
+
 
 router.get("/signup", function(req, res, error) {
 	renderTemplate(res, "signup", "Signup", {
 	});
 });
 
-router.post("/signup", function(req,res) {
+router.post("/signup", function(req, res) {
 			User.signup(req)
 			.then(function() {
 				res.redirect("/");

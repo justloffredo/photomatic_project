@@ -1,0 +1,10 @@
+<div class="document">
+	<h1><%- file.get("originalName") %></h1>
+	<% if (file.getPreviewSrc()) { %>
+		<img class="document-preview" src="<%- file.getPreviewSrc() %>"/>
+	<% } else { %>
+		<div class="document-preview noPreview">No preview available</div>
+	<% } %>
+
+	<a class="document-download button" href="/docs/download/<%- file.get('id') %>">Download</a>
+</div>

@@ -1,18 +1,23 @@
 const sql = require("../utility/sql");
 const bcrypt = require("bcrypt");
 const Sequelize = require("sequelize");
+const fs = require("fs-extra");
+
 const Photos = require("./photos");
 const Comments = require("./comments");
+const path = require("path");
+const Jimp = require("jimp");
+
 
 function hashUserPassword(user) {
 	if (user.password) {
-	return bcrypt.genSalt()
-		.then(function(salt) {
-			console.log(salt);
-			return bcrypt.hash(user.password, salt);
-		}).then(function(hashedPW) {
-			user.password = hashedPW;
-		});
+		return bcrypt.genSalt()
+			.then(function(salt) {
+				console.log(salt);
+				return bcrypt.hash(user.password, salt);
+			}).then(function(hashedPW) {
+				user.password = hashedPW;
+			});
 	}
 }
 
@@ -43,42 +48,68 @@ User.hasMany(Comments);
 
 User.signup = function(req) {
 	return User.create({
-		username : req.body.username,
-		password : req.body.password,
-	})
-	.then(function(user) {
-		req.session.userid = user.id;
-		return user;
-	});
+			username: req.body.username,
+			password: req.body.password,
+		})
+		.then(function(user) {
+			req.session.userid = user.id;
+			return user;
+		});
 };
 
 User.login = function(req) {
 	return User.findOne({
-		where: {
-			username: req.body.username,
-		},
-	})
-	.then(function(user) {
-		if (user) {
-			return user.comparePassword(req.body.password).then(function(valid) {
+			where: {
+				username: req.body.username,
+			},
+		})
+		.then(function(user) {
+			if (user) {
+				return user.comparePassword(req.body.password).then(function(valid) {
 					if (valid) {
 						req.session.userid = user.get("id");
 						return user;
-					}
-					else {
+					} else {
 						throw new Error("Incorrect password");
 					}
-			});
-		}
-		else {
-			throw new Error("Username not found. Have you signed up for an account?");
-		}
-	});
+				});
+			} else {
+				throw new Error("Username not found. Have you signed up for an account?");
+			}
+		});
 };
 
 
 User.prototype.comparePassword = function(pw) {
 	return bcrypt.compare(pw, this.get("password"));
+};
+
+User.prototype.upload = function(file) {
+	return this.createPhoto({
+			id: file.id,
+			size: file.size,
+			originalName: file.originalname,
+			mimeType: file.mimetype,
+		})
+		.then(function() {
+			const ext = path.extname(file.originalname);
+			const dest = "assets/files/" + file.filename + ext;
+			return fs.copy(file.path, dest);
+		})
+		.then(function() {
+			// If I'm an image, we should generate thumbnail
+			// and preview images as well.
+			if (file.mimetype.includes("image/")) {
+				Jimp.read(file.path).then(function(img) {
+						img.quality(80).resize(Jimp.AUTO, 400);
+						return img.write("assets/previews/" + file.filename + ".jpg");
+					})
+					.then(function(img) {
+						img.cover(64, 64);
+						return img.write("assets/thumbnails/" + file.filename + ".jpg");
+					});
+			}
+		});
 };
 
 module.exports = User;
