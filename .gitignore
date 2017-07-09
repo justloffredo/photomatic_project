@@ -3,3 +3,5 @@ node_modules/
 npm-debug.log, *.log
 .env
 uploads/
+assets/previews/*
+assets/thumbnails/*
