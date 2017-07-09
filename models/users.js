@@ -85,8 +85,8 @@ User.prototype.comparePassword = function(pw) {
 };
 
 User.prototype.upload = function(file) {
-	return this.createFile({
-			id: file.filename,
+	return this.createPhoto({
+			id: file.id,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,

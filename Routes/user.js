@@ -1,10 +1,10 @@
 const express = require("express");
 const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
-const requireLoggedOut = require("../middleware/requireLoggedOut");
+// const requireLoggedOut = require("../middleware/requireLoggedOut");
 
 const router = express.Router();
-router.use(requireLoggedOut);
+// router.use(requireLoggedOut);
 
 
 router.get("/signup", function(req, res, error) {
