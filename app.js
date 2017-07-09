@@ -38,8 +38,8 @@ app.use(deserializeUserMW);
 
 
 app.use("/api", apiRoutes);
-app.use("/", userRoutes);
-app.use("/", photoRoutes);
+app.use("/user", userRoutes);
+app.use("/photo", photoRoutes);
 app.get("*", function(req, res) {
 	renderTemplate(res,"404");
 });

@@ -29,7 +29,7 @@
 **
 ***/
 
-.bodytemp {
+body {
   display: flex;
   flex-direction: column;
 	margin: 0;
@@ -81,6 +81,13 @@ i {
 	padding-left: 10px;
 	font-size: 22px;
 	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+}
+
+.welcome {
+	float: left;
+	font-weight: normal;
+	padding-left: 10px;
+	font-size: 22px;
 }
 
 footer {

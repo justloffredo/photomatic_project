@@ -1,21 +1,27 @@
 const express = require("express");
 const User = require("../models/users.js");
-const renderTemplate = require("../utility/renderTemplate.js");
+const renderUserTemp = require("../utility/renderauth.js");
 const router = express.Router();
 
+router.get("/home", function(req, res, error) {
+	renderUserTemp(res, "signup", "Signup", {
+	});
+});
+
 router.get("/signup", function(req, res, error) {
-	renderTemplate(res, "signup", "Signup", {
+	renderUserTemp(res, "signup", "Signup", {
 	});
 });
 
 router.post("/signup", function(req,res) {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/");
+				res.redirect("/profile");
 			})
 			.catch(function(err) {
 				res.status(400);
-				renderTemplate(req, res, "signup", "Signup", {
+				renderUserTemp(req, res, "signup", "Signup", {
+					username: req.user,
 					error: "Please ensure all fields are filled in properly",
 				});
 			});
@@ -23,7 +29,7 @@ router.post("/signup", function(req,res) {
 
 
 router.get("/login", function(req, res) {
-	renderTemplate(res, "login", "Login", {
+	renderUserTemp(res, "login", "Login", {
 	});
 });
 
@@ -34,7 +40,7 @@ router.post("/login", function(req, res) {
 		})
 		.catch(function(err) {
 			res.status(400);
-			renderTemplate(res, "login", "Login", {
+			renderUserTemp(res, "login", "Login", {
 				error: err.message,
 			});
 		});

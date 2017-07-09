@@ -28,14 +28,14 @@ router.post("/signup", function(req,res) {
 
 
 router.get("/", function(req, res) {
-	if(req.user) {
+	if (!req.user) {
 		console.log(req.user);
-		renderTemplate(res, "home", "Home", {
-
+		res.render("./pages/home",  {
+			page: "home",
 	});
 }
 	else {
-		res.redirect("/login");
+		res.redirect("/user");
 	}
 });
 
