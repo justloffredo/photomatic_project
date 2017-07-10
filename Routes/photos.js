@@ -9,35 +9,31 @@ const Sequelize = require("sequelize");
 
 const Photo = require("../models/photos");
 const uploader = multer({ dest: "uploads/" });
+const requireLoggedIn = require("../middleware/requireLoggedIn");
+
+router.use(requireLoggedIn);
 
 
-router.post("/signup", function(req,res) {
-	User.create({
-		username: req.body.username,
-		password: req.body.password,
-	})
-	.then(function(user) {
-		console.log(user);
-		res.redirect("/");
-	})
-	.catch(function(err) {
-		res.send("Error");
-	});
-});
-
-
-
+// Render all of a user's documents
 router.get("/", function(req, res) {
-	if (!req.user) {
-		console.log(req.user);
-		res.render("./pages/home",  {
-			page: "home",
-	});
-}
-	else {
-		res.redirect("/user");
+	let message = "";
+
+
+	if (req.query.success) {
+		message = "File uploaded succesfully!";
 	}
+
+	req.user.getFiles().then(function(photos) {
+		renderTemplate(res, "home", "Home", {
+			username: req.user.get("username"),
+			photos: photos,
+			message: message,
+		});
+	});
 });
+
+
+
 
 // upload photo
 // Render an upload form that POSTs to /docs/upload
@@ -47,7 +43,7 @@ router.get("/upload", function(req, res) {
 	});
 });
 
-// Upload the form at GET /docs/upload
+// Upload the form at GET /upload
 router.post("/upload", uploader.single("file"), function(req, res) {
 	// Make sure they sent a file
 	if (!req.file) {
@@ -57,19 +53,19 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 	}
 
 	// Otherwise, try an upload
-	// req.user.upload(req.file).then(function() {
-	// 	res.redirect("/docs?success=1");
-	// })
-	// .catch(function(err) {
-	// 	console.error("Something went wrong with upload", err);
-	// 	renderTemplate(req, res, "Upload a File", "upload", {
-	// 		error: "Something went wrong, please try a different file",
-	// 	});
-	// });
+	req.user.upload(req.file).then(function() {
+		res.redirect("/preview?success=1");
+	})
+	.catch(function(err) {
+		console.error("Something went wrong with upload", err);
+		renderTemplate(req, res, "Upload a File", "upload", {
+			error: "Something went wrong, please try a different file",
+		});
+	});
 });
 
 // Render an individual document
-router.get("/doc/:fileId", function(req, res) {
+router.get("/photo/:fileId", function(req, res) {
 	File.findById(req.params.fileId).then(function(file) {
 		if (file) {
 			renderTemplate(req, res, file.get("name"), "document", {

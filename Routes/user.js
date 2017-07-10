@@ -1,7 +1,11 @@
 const express = require("express");
 const User = require("../models/users.js");
 const renderUserTemp = require("../utility/renderauth.js");
+const requireLoggedOut = require("../middleware/requireLoggedOut");
+
 const router = express.Router();
+// router.use(requireLoggedOut);
+
 
 router.get("/home", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
@@ -13,7 +17,7 @@ router.get("/signup", function(req, res, error) {
 	});
 });
 
-router.post("/signup", function(req,res) {
+router.post("/signup", function(req, res) {
 			User.signup(req)
 			.then(function() {
 				res.redirect("/profile");

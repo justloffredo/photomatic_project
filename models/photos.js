@@ -30,6 +30,29 @@ const Photos = sql.define("photo", {
 	},
 });
 
+
+Photos.prototype.getThumbnailSrc = function() {
+	// Check if I have a thumbnail available in assets/thumbnails!
+	// Otherwise return this default icon
+	const filePath = "/thumbnails/" + this.get("id") + ".jpg";
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
+	}
+	else {
+		return "/icons/file.svg";
+	}
+};
+
+Photos.prototype.getPreviewSrc = function() {
+	// Check if I have a preview available in assets/previews!
+	// Otherwise return null, to display a "no preview" message
+	const filePath = "/previews/" + this.get("id") + ".jpg";
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
+	}
+	return null;
+};
+
 Tags.belongsToMany(Photos, { through: "photos_tags" });
 Photos.belongsToMany(Tags, { through: "photos_tags" });
 Photos.hasMany(Comments);
