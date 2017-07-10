@@ -19,7 +19,7 @@ router.post("/signup", function(req, res) {
 			})
 			.catch(function(err) {
 				res.status(400);
-				renderTemplate(req, res, "signup", "Signup", {
+				renderTemplate(res, "signup", "Signup", {
 					error: "Please ensure all fields are filled in properly",
 				});
 			});

@@ -84,12 +84,13 @@ User.prototype.comparePassword = function(pw) {
 	return bcrypt.compare(pw, this.get("password"));
 };
 
-User.prototype.upload = function(file) {
+User.prototype.upload = function(file, req) {
 	return this.createPhoto({
 			id: file.id,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
+			description: file.description,
 		})
 		.then(function() {
 			const ext = path.extname(file.originalname);

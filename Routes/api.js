@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/users.js");
+const Photo = require("../models/photos.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
@@ -49,6 +50,24 @@ router.post("/login", function(req, res) {
 			console.log(req.session);
 			res.redirect("/");
 	});
+
+router.delete("/photo/:photoId", function(req,res) {
+	Photo.findById(req.params.photoId)
+		.then(function(photo) {
+			if (photo) {
+				photo.destroy();
+				res.json({ photo: photo });
+			}
+			else {
+				res.status(404);
+				res.json({ error: "Unable to find photo with " + req.params.photoId });
+			}
+		})
+		.catch(function(err) {
+			res.status(500);
+			res.json({ error: "Unable to delete file" });
+		});
+});
 
 
 

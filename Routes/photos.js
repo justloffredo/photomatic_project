@@ -1,6 +1,7 @@
 const express = require ("express");
 const router = express.Router();
 const User = require("../models/users.js");
+const Photos = require("../models/photos.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
@@ -9,24 +10,17 @@ const requireLoggedIn = require("../middleware/requireLoggedIn");
 
 const Sequelize = require("sequelize");
 
-const Photo = require("../models/photos");
+
 const uploader = multer({ dest: "uploads/" });
 router.use(requireLoggedIn);
 
 
-// Render all of a user's documents
-router.get("/", function(req, res) {
-	let message = "";
 
-	if (req.query.success) {
-		message = "File uploaded succesfully!";
-	}
-
-	req.user.getFiles().then(function(photos) {
-		renderTemplate(res, "home", "Home", {
+router.get("/gallery", function(req, res) {
+	Photos.findAll().then(function(photos) {
+		renderTemplate(res, "gallery", "Gallery", {
 			username: req.user.get("username"),
 			photos: photos,
-			message: message,
 		});
 	});
 });
@@ -52,7 +46,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 	}
 
 	// Otherwise, try an upload
-	req.user.upload(req.file).then(function() {
+	req.user.upload(req.file, req.body.description).then(function() {
 		res.redirect("/preview?success=1");
 	})
 	.catch(function(err) {
@@ -65,7 +59,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 
 // Render an individual document
 router.get("/photo/:fileId", function(req, res) {
-	File.findById(req.params.fileId).then(function(file) {
+	Photos.findById(req.params.photoId).then(function(file) {
 		if (file) {
 			renderTemplate(req, res, file.get("name"), "document", {
 				file: file,
