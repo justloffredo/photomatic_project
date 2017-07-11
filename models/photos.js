@@ -4,7 +4,7 @@ const Tags = require("./tags");
 const Comments = require("./comments");
 const Likes = require("./likes");
 
-const fs = require("fs");
+const fs = require("fs-extra");
 
 
 const Photos = sql.define("photo", {
@@ -26,7 +26,11 @@ const Photos = sql.define("photo", {
 		notNull: true,
 	},
 	description: {
-			type: Sequelize.STRING(150),
+		type: Sequelize.STRING(150),
+	},
+	filename: {
+		type: Sequelize.STRING,
+		notNull: true,
 	},
 });
 
@@ -34,8 +38,8 @@ const Photos = sql.define("photo", {
 Photos.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
-	const filePath = "/thumbnails/" + this.get("id") + ".jpg";
-	if (fs.existsSync("assets" + filePath)) {
+	const filePath = "/thumbnails/" + this.get("userid");
+	if (fs.existsSync("/assets" + filePath)) {
 		return filePath;
 	}
 	else {

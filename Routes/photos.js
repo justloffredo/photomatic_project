@@ -1,7 +1,7 @@
 const express = require ("express");
 const router = express.Router();
 const User = require("../models/users.js");
-const Photos = require("../models/photos.js");
+const File = require("../models/photos.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
@@ -17,7 +17,7 @@ router.use(requireLoggedIn);
 
 
 router.get("/gallery", function(req, res) {
-	Photos.findAll().then(function(photos) {
+	File.findAll().then(function(photos) {
 		renderTemplate(res, "gallery", "Gallery", {
 			username: req.user.get("username"),
 			photos: photos,
@@ -58,8 +58,8 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 });
 
 // Render an individual document
-router.get("/photo/:fileId", function(req, res) {
-	Photos.findById(req.params.photoId).then(function(file) {
+router.get("/photo/:photoId", function(req, res) {
+	File.findById(req.params.fileId).then(function(file) {
 		if (file) {
 			renderTemplate(req, res, file.get("name"), "document", {
 				file: file,
