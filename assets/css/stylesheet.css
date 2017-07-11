@@ -2,7 +2,34 @@
 	box-sizing: border-box;
 }
 
-body {
+/* ERROR PAGE TEXT
+**
+***/
+
+.error {
+    color: white;
+    text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+}
+
+.errorphoto {
+	object-fit: contain;
+	height: auto;
+	width: 33%;
+	opacity: 0.3px;
+	-webkit-animation:spin 3s linear infinite;
+	 -moz-animation:spin 3s linear infinite;
+	 animation:spin 3s linear infinite;
+	}
+	@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+	@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+	@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+}
+
+/* TEMPLATE
+**
+***/
+
+.bodytemp {
   display: flex;
   flex-direction: column;
 	margin: 0;
@@ -13,22 +40,54 @@ body {
 
 }
 
-.template {
-flex: 1 0	auto;
-text-align: center;
-min-height: 100%;
-width: 100%;
-margin: auto;
-}
-
 .template-header {
-	background-color: #FFF;
-	height: 15%;
-
+	background-color: #191919;
+	height: 12%;
+	opacity: 0.6;
+	text-align: right;
+	padding: 10px 10px 10px;
+	color: white;
 }
 
+.template {
+	flex: 1 0	auto;
+	text-align: center;
+	min-height: 100%;
+	width: 100%;
+	margin: auto;
+}
 
-/*Login Form*/
+#signup {
+	background-color: #4fabc9;
+}
+
+#login {
+	color: white;
+}
+
+i {
+	float: left;
+	/*padding-top: 5px;
+	padding-left: 5px;*/
+}
+
+.photomatic {
+	float: left;
+	font-weight: bolder;
+	padding-left: 10px;
+	font-size: 22px;
+	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+}
+
+footer {
+color: white;
+text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+text-align: center;
+}
+
+/*Login Form & Sign Up Form
+**
+***/
 
 .Form {
 	position: absolute;
@@ -41,6 +100,18 @@ margin: auto;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	font-size: 18px;
+
+}
+
+.username, .password {
+	font-weight: bold;
+}
+
+.login-password, .login-username,
+.signup-username, .signup-password,
+.signup-conf-password {
+	font-style: italic;
 }
 
 input,
@@ -49,3 +120,7 @@ input,
 				width: 100%;
 				height: 40%;
 			}
+
+.submit {
+	background-color: #4fabc9;
+}

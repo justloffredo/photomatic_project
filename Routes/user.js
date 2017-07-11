@@ -45,6 +45,7 @@ router.post("/login", function(req, res) {
 });
 
 
+
 router.get("/logout", function(req, res) {
 	req.session.userid = null;
 	req.user = null;
@@ -52,9 +53,32 @@ router.get("/logout", function(req, res) {
 	res.redirect("/");
 });
 
+router.get("/signup", function(req, res, error) {
+	renderTemplate(res, "signup", "Signup", {
+
+	});
+});
 
 
 
+
+
+
+
+router.post("/signup", function(req,res) {
+	User.create({
+		username: req.body.username,
+		password: req.body.password,
+	})
+	.then(function() {
+		res.redirect("/user/login");
+	})
+	.catch(function(err) {
+		renderTemplate(req, res, "signup", "Signup", {
+			error: "Please ensure all fields are filled in properly",
+		});
+	});
+});
 
 
 
