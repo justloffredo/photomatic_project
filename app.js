@@ -19,6 +19,8 @@ const photoRoutes = require("./Routes/photos.js");
 const userRoutes = require("./Routes/user.js");
 const apiRoutes = require("./Routes/api");
 
+
+
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +30,11 @@ app.use(session({
 	store: new SessionStore({ db:sql }),
 }));
 app.use(deserializeUserMW);
+
+
+
+
+
 
 
 app.use("/api", apiRoutes);

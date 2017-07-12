@@ -84,6 +84,7 @@ User.prototype.comparePassword = function(pw) {
 	return bcrypt.compare(pw, this.get("password"));
 };
 
+
 User.prototype.upload = function(file, req) {
 	return this.createPhoto({
 			id: file.id,
@@ -91,6 +92,7 @@ User.prototype.upload = function(file, req) {
 			originalName: file.originalname,
 			mimeType: file.mimetype,
 			description: file.description,
+			filename: file.filename,
 		})
 		.then(function() {
 			const ext = path.extname(file.originalname);

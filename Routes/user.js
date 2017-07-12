@@ -21,12 +21,11 @@ router.get("/signup", function(req, res, error) {
 router.post("/signup", function(req, res) {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/profile");
+				res.redirect("/user/login");
 			})
 			.catch(function(err) {
 				res.status(400);
-				renderUserTemp(req, res, "signup", "Signup", {
-					username: req.user,
+				renderUserTemp(res, "signup", "Signup", {
 					error: "Please ensure all fields are filled in properly",
 				});
 			});
@@ -41,7 +40,8 @@ router.get("/login", function(req, res) {
 router.post("/login", function(req, res) {
 	User.login(req)
 		.then(function() {
-			res.redirect("/");
+			req.session.user;
+			res.redirect("/photo/upload");
 		})
 		.catch(function(err) {
 			res.status(400);

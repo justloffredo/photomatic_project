@@ -1,13 +1,9 @@
-// const User = require("../models/users.js");
-
-
-function renderUserTemp(res, page, title, args, links, error, username) {
+function renderUserTemp(res, page, title, args, links, error) {
 	return res.render("usertemp", {
 		page: page,
 		title: title,
 		args: args,
 		error: error,
-		username: username,
 	});
 }
 
