@@ -13,7 +13,7 @@ const Comments = sql.define("comment", {
 		notNull: true,
 	}
 
-})
+});
 
 Comments.hasMany(commentLikes);
 

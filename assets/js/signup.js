@@ -20,7 +20,7 @@ $signupForm.on("submit", function(ev) {
     }
 
     $.ajax("/api/signup", {
-        method: POST,
+        method: "POST",
         data: {
             username: username,
             password: password,

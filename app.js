@@ -19,8 +19,6 @@ const photoRoutes = require("./Routes/photos.js");
 const userRoutes = require("./Routes/user.js");
 const apiRoutes = require("./Routes/api");
 
-
-
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,11 +30,6 @@ app.use(session({
 app.use(deserializeUserMW);
 
 
-
-
-
-
-
 app.use("/api", apiRoutes);
 app.use("/user", userRoutes);
 app.use("/photo", photoRoutes);
@@ -45,7 +38,7 @@ app.get("*", function(req, res) {
 });
 
 
-sql.sync().then(function() {
+sql.sync({ force: true }).then(function() {
 	console.log("Database synced");
 	const port = process.env.PORT || 3000;
 

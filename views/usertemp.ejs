@@ -3,8 +3,12 @@
   <head>
     <title>Photomatic</title>
 
-<!--CSS
---------------------------------------------------------->
+    <%if (false) {%>
+    <div>
+    	<span>CSS</span>
+    </div>
+    <%}%>
+
     <meta name="viewport" content="width-device-width, initial scale=1">
 		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
     <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
@@ -16,8 +20,8 @@
 
   <body class = "bodytemp" id="back-image">
 
-<!--Navigation Bar
---------------------------------------------------------->
+<%/* NAVIGATION BAR */%>
+
 	<div class = "template">
     <div class = "template-header">
       <!-- <nav> -->
@@ -26,7 +30,6 @@
 		      <nav>
 		        <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
 		        <div class = "photomatic">Photomatic</div>
-							<div class="welcome"> </div>
 
 		          <a href ="/user/signup"><div class = "button" id="signup">Sign Up</div></a>
 		          <a href = "/user/login"><div class= "button" id="login">Login</div></a>

@@ -3,11 +3,6 @@ const User = require("../models/users.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
-router.get("/signup", function(req, res, error) {
-	renderTemplate(res, "signup", "Signup", {
-	});
-});
-
 router.post("/signup", function(req,res) {
 	User.signup(req)
 			.then(function(user) {

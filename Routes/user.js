@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get("/home", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
+
 	});
 });
 

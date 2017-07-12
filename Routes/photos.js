@@ -40,6 +40,7 @@ router.get("/", function(req, res) {
 router.get("/upload", function(req, res) {
 	// renderTemplate(req, res, "Upload a File", "upload");
 	renderTemplate(res, "upload", "Upload", {
+		username: req.user.username,
 	});
 });
 

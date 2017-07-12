@@ -1,10 +1,10 @@
-<!DOCTYPE HTML/>
-<html>
+
+
   <head>
     <title>Photomatic</title>
 
-<!--CSS
---------------------------------------------------------->
+<%/* CSS */%>
+
     <meta name="viewport" content="width-device-width, initial scale=1">
 		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
     <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
@@ -16,16 +16,15 @@
 
   <body class = "bodytemp" id="back-image">
 
-<!--Navigation Bar
---------------------------------------------------------->
+<%/* NAVIGATION BAR */%>
+
 	<div class = "template">
     <div class = "template-header">
       <!-- <nav> -->
         <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
         <div class = "photomatic">Photomatic</div>
-    
 
-
+        <div class = "welcome">Welcome <%= args.username %> </div>
           <a href = "/photo/upload"><div class= "button" id="upload">Upload</div></a>
           <div class="button" id="signoff">Sign Off</div>
       <!-- <nav>
@@ -39,16 +38,17 @@
       <!-- </nav> -->
 		 </div>
 
-        <!-- <main class= "template-main"> -->
+        <%/* TEMPLATE-MAIN */%>
+
 			    <%-include("pages/" + page, args);%>
-		    <!-- </main> -->
+
       </div>
-<!-- Footer
---------------------------------------------------------->
+
+<%/* FOOTER */%>
+
 
         <footer>Photomatica 2017</footer>
 
 
 
 </body>
-</html>
