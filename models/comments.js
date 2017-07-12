@@ -9,7 +9,7 @@ const Comments = sql.define("comment", {
 		autoIncrement: true,
 	},
 	text: {
-		type: Sequelize.TEXT,
+		type: Sequelize.STRING(250),
 		notNull: true,
 	}
 

@@ -26,12 +26,14 @@ const Photos = sql.define("photo", {
 		notNull: true,
 	},
 	description: {
+
 		type: Sequelize.STRING(150),
 	},
 	filename: {
 		type: Sequelize.STRING,
 		notNull: true,
 	},
+
 });
 
 

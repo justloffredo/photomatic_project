@@ -7,6 +7,7 @@ const router = express.Router();
 // router.use(requireLoggedOut);
 
 
+
 router.get("/signup", function(req, res, error) {
 	renderTemplate(res, "signup", "Signup", {
 	});
