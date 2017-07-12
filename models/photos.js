@@ -4,7 +4,7 @@ const Tags = require("./tags");
 const Comments = require("./comments");
 const Likes = require("./likes");
 
-const fs = require("fs-extra");
+const fs = require("fs");
 
 
 const Photos = sql.define("photo", {
@@ -38,8 +38,9 @@ const Photos = sql.define("photo", {
 Photos.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
-	const filePath = "/thumbnails/" + this.get("userid");
-	if (fs.existsSync("/assets" + filePath)) {
+	const filePath = "/thumbnails/" + this.get("filename") + ".jpg";
+	console.log(filePath);
+	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
 	else {
@@ -47,10 +48,10 @@ Photos.prototype.getThumbnailSrc = function() {
 	}
 };
 
-Photos.prototype.getPreviewSrc = function() {
+Photos.prototype.getPreviewSrc = function(file) {
 	// Check if I have a preview available in assets/previews!
 	// Otherwise return null, to display a "no preview" message
-	const filePath = "/previews/" + this.get("id") + ".jpg";
+	const filePath = "/previews/" + file.filename + ".jpg";
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}

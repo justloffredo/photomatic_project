@@ -91,6 +91,7 @@ User.prototype.upload = function(file, req) {
 			originalName: file.originalname,
 			mimeType: file.mimetype,
 			description: file.description,
+			filename: file.filename,
 		})
 		.then(function() {
 			const ext = path.extname(file.originalname);
