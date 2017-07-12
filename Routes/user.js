@@ -7,11 +7,10 @@ const router = express.Router();
 // router.use(requireLoggedOut);
 
 
-router.get("/home", function(req, res, error) {
-	renderUserTemp(res, "signup", "Signup", {
-
-	});
-});
+// router.get("/home", function(req, res, error) {
+// 	renderUserTemp(res, "signup", "Signup", {
+// 	});
+// });
 
 router.get("/signup", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
@@ -22,6 +21,7 @@ router.post("/signup", function(req, res) {
 			User.signup(req)
 			.then(function() {
 				res.redirect("/user/login");
+
 			})
 			.catch(function(err) {
 				res.status(400);

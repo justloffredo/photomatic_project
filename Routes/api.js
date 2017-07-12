@@ -55,9 +55,4 @@ router.delete("/photo/:photoId", function(req,res) {
 });
 
 
-
-
-
-
-
 module.exports = router;
