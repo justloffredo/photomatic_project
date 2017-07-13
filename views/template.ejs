@@ -1,58 +1,52 @@
-<!DOCTYPE HTML/>
-<html>
+
+
   <head>
     <title>Photomatic</title>
 
-<!--CSS
---------------------------------------------------------->
+<%/* CSS */%>
+
     <meta name="viewport" content="width-device-width, initial scale=1">
 		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
     <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <link rel="stylesheet" types="text.css" href="/css/normalize.css">
     <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
     <link rel="stylesheet" types="text.css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
 
-  <body class = "bodytemp">
+  <body class = "bodytemp" id="back-image">
 
-<!--Navigation Bar
---------------------------------------------------------->
+<%/* NAVIGATION BAR */%>
+
 	<div class = "template">
     <div class = "template-header">
-
-      <nav>
-        <a href ="/home">Home</a>
-        <a href = "/">Explore</a>
-        <a href = "photo/upload">Post</a>
-        <a href = "/user/login">Login</a>
-        <a href = "/user/signup">Signup</a>
-      </nav>
 
       <!-- <nav> -->
         <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
         <div class = "photomatic">Photomatic</div>
 
-          <a href ="/"><div class = "button" id="signup">Sign Up</div></a>
-          <a href = "/login"><div class= "button" id="login">Login</div></a>
 
+        <div class = "welcome">Welcome </div>
 
-      <!-- </nav> -->
+          <a href = "photo/upload">
+          <div class= "button" id="upload">Upload</div></a>
+
+          <div class="button" id="signoff">Sign Off</div>
+
 		 </div>
 
-        <main class= "template-main">
-			    <%-include("pages/" + page, args);%>
-		    </main>
+        <%/* TEMPLATE-MAIN */%>
+
+			   <%-include("pages/" + page, args);%>
+
       </div>
-<!-- Footer
---------------------------------------------------------->
+
+<%/* FOOTER */%>
+
 
         <footer>Photomatica 2017</footer>
 
 
 
 </body>
-</html>

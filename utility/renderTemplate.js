@@ -8,4 +8,5 @@ function renderTemplate(res, page, title, args, links, error) {
 	});
 }
 
+
 module.exports = renderTemplate;

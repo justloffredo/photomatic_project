@@ -1,32 +1,25 @@
 const express = require ("express");
 const router = express.Router();
 const User = require("../models/users.js");
-const File = require("../models/photos.js");
+const Photo = require("../models/photos.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
 const requireLoggedIn = require("../middleware/requireLoggedIn");
 
-
 const Sequelize = require("sequelize");
-
 
 const uploader = multer({ dest: "uploads/" });
 router.use(requireLoggedIn);
 
-
-
 router.get("/gallery", function(req, res) {
-	File.findAll().then(function(photos) {
+	Photo.findAll().then(function(photos) {
 		renderTemplate(res, "gallery", "Gallery", {
 			username: req.user.get("username"),
 			photos: photos,
 		});
 	});
 });
-
-
-
 
 // upload photo
 // Render an upload form that POSTs to /docs/upload
@@ -46,7 +39,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 	}
 
 	// Otherwise, try an upload
-	req.user.upload(req.file, req.body.description).then(function() {
+	req.user.upload(req.file).then(function() {
 		res.redirect("/preview?success=1");
 	})
 	.catch(function(err) {
@@ -59,7 +52,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 
 // Render an individual document
 router.get("/photo/:photoId", function(req, res) {
-	File.findById(req.params.fileId).then(function(file) {
+	Photo.findById(req.params.fileId).then(function(file) {
 		if (file) {
 			renderTemplate(req, res, file.get("name"), "document", {
 				file: file,
@@ -78,7 +71,7 @@ router.get("/photo/:photoId", function(req, res) {
 
 // Download a document, if it exists
 router.get("/download/:fileId", function(req, res) {
-	File.findById(req.params.fileId).then(function(file) {
+	Photo.findById(req.params.fileId).then(function(file) {
 		if (file) {
 			res.download("uploads/" + file.get("id"), file.get("originalName"));
 		}

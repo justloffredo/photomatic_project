@@ -4,10 +4,7 @@ const Photo = require("../models/photos.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
-router.get("/signup", function(req, res, error) {
-	renderTemplate(res, "signup", "Signup", {
-	});
-});
+
 
 router.post("/signup", function(req,res) {
 	User.signup(req)
@@ -25,11 +22,6 @@ router.post("/signup", function(req,res) {
 });
 
 
-router.get("/login", function(req, res) {
-	renderTemplate(res, "login", "Login", {
-	});
-});
-
 router.post("/login", function(req, res) {
 		User.login(req)
 		.then(function(user) {
@@ -43,13 +35,6 @@ router.post("/login", function(req, res) {
 		});
 	});
 
-	router.get("/logout", function(req, res) {
-			req.session.userid = null;
-			req.user = null;
-
-			console.log(req.session);
-			res.redirect("/");
-	});
 
 router.delete("/photo/:photoId", function(req,res) {
 	Photo.findById(req.params.photoId)

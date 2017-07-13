@@ -9,11 +9,11 @@ const Comments = sql.define("comment", {
 		autoIncrement: true,
 	},
 	text: {
-		type: Sequelize.STRING(250),
+		type: Sequelize.TEXT,
 		notNull: true,
 	}
 
-})
+});
 
 Comments.hasMany(commentLikes);
 

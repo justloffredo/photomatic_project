@@ -34,10 +34,14 @@
   flex-direction: column;
 	margin: 0;
 	padding: 0;
-	background: url("/app-images/photomatic.jpg") center center fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-image: url('/app-images/photomatic.jpg') center center fixed;
+}
 
+#back-image {
+
+	/*filter: blur(8px);*/
 }
 
 .template-header {
@@ -79,6 +83,13 @@ i {
 	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
 }
 
+.welcome {
+	float: left;
+	font-weight: normal;
+	padding-left: 10px;
+	font-size: 22px;
+}
+
 footer {
 color: white;
 text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
@@ -101,7 +112,7 @@ text-align: center;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 18px;
-
+	color: black;
 }
 
 .username, .password {
@@ -122,5 +133,13 @@ input,
 			}
 
 .submit {
+	background-color: #4fabc9;
+}
+
+/* Upload Page
+**
+***/
+
+#upload {
 	background-color: #4fabc9;
 }

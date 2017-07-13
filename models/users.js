@@ -85,6 +85,7 @@ User.prototype.comparePassword = function(pw) {
 	return bcrypt.compare(pw, this.get("password"));
 };
 
+
 User.prototype.upload = function(file, req) {
 	return this.createPhoto({
 			id: file.id,
