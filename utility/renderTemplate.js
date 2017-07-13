@@ -4,7 +4,9 @@ function renderTemplate(res, page, title, args, links, error) {
 		title: title,
 		args: args,
 		error: error,
+
 	});
 }
+
 
 module.exports = renderTemplate;

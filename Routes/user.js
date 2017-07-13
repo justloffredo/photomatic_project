@@ -7,10 +7,7 @@ const router = express.Router();
 // router.use(requireLoggedOut);
 
 
-// router.get("/home", function(req, res, error) {
-// 	renderUserTemp(res, "signup", "Signup", {
-// 	});
-// });
+
 
 router.get("/signup", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
@@ -21,7 +18,6 @@ router.post("/signup", function(req, res) {
 			User.signup(req)
 			.then(function() {
 				res.redirect("/user/login");
-
 			})
 			.catch(function(err) {
 				res.status(400);
@@ -52,12 +48,20 @@ router.post("/login", function(req, res) {
 });
 
 
+
 router.get("/logout", function(req, res) {
 	req.session.userid = null;
 	req.user = null;
 	console.log(req.session);
 	res.redirect("/");
 });
+
+
+
+
+
+
+
 
 
 
