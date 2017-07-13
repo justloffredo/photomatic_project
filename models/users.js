@@ -58,6 +58,7 @@ User.signup = function(req) {
 		});
 };
 
+
 User.login = function(req) {
 	return User.findOne({
 			where: {
@@ -70,7 +71,8 @@ User.login = function(req) {
 					if (valid) {
 						req.session.userid = user.get("id");
 						return user;
-					} else {
+					}
+					else {
 						throw new Error("Incorrect password");
 					}
 				});
