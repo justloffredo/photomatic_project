@@ -16,22 +16,24 @@
 
 ### 'users'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`user`                 | STRING (NOT NULL)    |
-|`password`             | STRING (NOT NULL)    |
+| Column                | Type                	          |
+|-----------------------|---------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)           |
+|`username`             | STRING(100) (NOT NULL)(UNIQUE)  |
+|`password`             | STRING(1000) (NOT NULL)         |
 
 * ONE to MANY relationship with photos
 * ONE to MANY relationship comments
 
 ### 'photos'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`image`                | BLOB (NOT NULL)      |
-|`description`          | STRING (NOT NULL)    |
+| Column                | Type                      |
+|-----------------------|---------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)     |
+|`size`                	| INTEGER (NOT NULL)        |
+|`originalName`         | STRING (NOT NULL)         |
+|`mimeType`             | STRING (NOT NULL)         |
+|`description`          | STRING (500)              |
 
 * ONE to MANY relationship with photos comments
 * MANY to MANY relationship with tags
@@ -40,10 +42,10 @@
 
 ### 'comments'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`body`                 | STRING (NOT NULL)    |
+| Column                | Type                   |
+|-----------------------|------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)  |
+|`text`                 | STRING (NOT NULL)(250) |
 
 * MANY to ONE relationship with photos
 * MANY to ONE relationship with user
@@ -53,30 +55,28 @@
 
 ### 'tags'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`tag`                  | STRING (NOT NULL)    |
+| Column                | Type                         |
+|-----------------------|------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)        |
+|`name`                 | STRING (NOT NULL)(UNIQUE)    |
 
 * MANY to MANY relationship with photos
 
 
-### 'photoLikes'
+### 'Likes'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`photolike`            | INTEGER (NOT NULL)   |
+| Column                | Type                                |
+|-----------------------|-------------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)(AUTOINCREMENT)|
 
 * MANY to ONE relationship with photos
 
 
 ### 'commentLikes'
 
-| Column                | Type                 |
-|-----------------------|----------------------|
-|`id`                   | INTEGER (PRIMARY KEY)|
-|`commentlike`          | INTEGER (NOT NULL)   |
+| Column                | Type                               |
+|-----------------------|------------------------------------|
+|`id`                   | INTEGER (PRIMARY KEY)(AUTOINCREMENT|
 
 * MANY to ONE relationship with comments
 
@@ -117,7 +117,7 @@
 * Provides a link to signup page if user does not have an account
 
 
-### POST `/login`
+### POST `user/login`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
@@ -125,9 +125,9 @@
 | `password`            | Password input to verify account                                                            |
 
 * Endpoint for submitting an account creation post form
-* Upon success, redirects to `/photomatic`
+* Upon success, redirects to `/user`
 
-### GET `/signup`
+### GET `user/signup`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
@@ -135,11 +135,10 @@
 
 * Displays a page with a signup form for creating an account with a username and password.
 
-### POST `/signup`
+### POST `/user/signup`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `id`                  | Primary key for the user being created. A new id will be made.                              |
 | `username`            | User name created to assign to account.                                                     |
 | `password`            | Password created to sign into acount.                                                       |
 
@@ -151,20 +150,21 @@
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `No argument`         | No argument                                                                                 |
+| `user`         	| Specifies which user is being displayed based on the user logged into the session           |
 
 * Displays a page with a user and the photos which they have submitted
+* If the user isn't logged into a session, redirects back to 'user/login'
 
-### POST `/user`
+### POST `/user/post`
 
 | Argument              | Description                                                                                 |
 |-----------------------|---------------------------------------------------------------------------------------------|
-| `id`                  | Primary key for the photo being posted. A new id will be made                               |
 | `photo`               | Photo to be posted to the application by the user                                           |
+| `description`         | Description to be associated to the photo being posted.                                     |
 | `tag`                 | Tag to be associated to the photo being posted, based on a specified topic                  |
 
 * Endpoint for submitting a photo being posted by the user with any associated tags
-* Upon success, redirects to `/`
+* Upon success, redirects to `/user` with posted photo
 
 
 ## Inspiration

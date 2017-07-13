@@ -5,3 +5,4 @@ npm-debug.log, *.log
 uploads/
 assets/previews/*
 assets/thumbnails/*
+assets/files/*

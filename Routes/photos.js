@@ -1,100 +1,68 @@
-const express = require ("express");
-const router = express.Router();
-const User = require("../models/users.js");
-const Photos = require("../models/photos.js");
-const renderTemplate = require("../utility/renderTemplate.js");
-const BodyParser = require("body-parser");
-const multer = require("multer");
-const requireLoggedIn = require("../middleware/requireLoggedIn");
-
-
+const sql = require("../utility/sql");
 const Sequelize = require("sequelize");
+const Tags = require("./tags");
+const Comments = require("./comments");
+const Likes = require("./likes");
+
+const fs = require("fs");
 
 
-const uploader = multer({ dest: "uploads/" });
-router.use(requireLoggedIn);
+const Photos = sql.define("photo", {
+	id: {
+		type: Sequelize.INTEGER,
+		autoIncrement: true,
+		primaryKey: true,
+	},
+	size: {
+		type: Sequelize.INTEGER,
+		notNull: true,
+	},
+	originalName: {
+		type: Sequelize.STRING,
+		notNull: true,
+	},
+	mimeType: {
+		type: Sequelize.STRING,
+		notNull: true,
+	},
+	description: {
+    type: Sequelize.STRING(150),
+	},
+	filename: {
+		type: Sequelize.STRING,
+		notNull: true,
+	},
 
 
-
-router.get("/gallery", function(req, res) {
-	Photos.findAll().then(function(photos) {
-		renderTemplate(res, "gallery", "Gallery", {
-			username: req.user.get("username"),
-			photos: photos,
-		});
-	});
 });
 
 
-
-
-// upload photo
-// Render an upload form that POSTs to /docs/upload
-router.get("/upload", function(req, res) {
-	// renderTemplate(req, res, "Upload a File", "upload");
-	renderTemplate(res, "upload", "Upload", {
-	});
-});
-
-// Upload the form at GET /upload
-router.post("/upload", uploader.single("file"), function(req, res) {
-	// Make sure they sent a file
-	if (!req.file) {
-		return renderTemplate(req, res, "Upload a File", "upload", {
-			error: "You must choose a file to upload",
-		});
+Photos.prototype.getThumbnailSrc = function() {
+	// Check if I have a thumbnail available in assets/thumbnails!
+	// Otherwise return this default icon
+	const filePath = "/thumbnails/" + this.get("filename") + ".jpg";
+	console.log(filePath);
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
 	}
+	else {
+		return "/icons/file.svg";
+	}
+};
 
-	// Otherwise, try an upload
-	req.user.upload(req.file, req.body.description).then(function() {
-		res.redirect("/preview?success=1");
-	})
-	.catch(function(err) {
-		console.error("Something went wrong with upload", err);
-		renderTemplate(req, res, "Upload a File", "upload", {
-			error: "Something went wrong, please try a different file",
-		});
-	});
-});
+Photos.prototype.getPreviewSrc = function(file) {
+	// Check if I have a preview available in assets/previews!
+	// Otherwise return null, to display a "no preview" message
+	const filePath = "/previews/" + file.filename + ".jpg";
+	if (fs.existsSync("assets" + filePath)) {
+		return filePath;
+	}
+	return null;
+};
 
-// Render an individual document
+Tags.belongsToMany(Photos, { through: "photos_tags" });
+Photos.belongsToMany(Tags, { through: "photos_tags" });
+Photos.hasMany(Comments);
+Photos.hasMany(Likes);
 
-router.get("/photo/:fileId", function(req, res) {
-	Photos.findById(req.params.photoId).then(function(file) {
-		if (file) {
-			renderTemplate(req, res, file.get("name"), "document", {
-				file: file,
-			});
-		}
-		else {
-			res.status(404);
-			renderTemplate(req, res, "Not Found", "404");
-		}
-	})
-	.catch(function(err) {
-		console.error("Error while fetching file " + req.params.fileId, err);
-		res.status(500).send("Something went wrong!");
-	});
-});
-
-// Download a document, if it exists
-router.get("/download/:fileId", function(req, res) {
-	File.findById(req.params.fileId).then(function(file) {
-		if (file) {
-			res.download("uploads/" + file.get("id"), file.get("originalName"));
-		}
-		else {
-			res.status(404).send("No file found");
-		}
-	})
-	.catch(function(err) {
-		console.error(err);
-		res.status(500).send("Something went wrong");
-	});
-});
-
-
-
-
-
-module.exports = router;
+module.exports = Photos;

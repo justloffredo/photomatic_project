@@ -26,18 +26,22 @@ const Photos = sql.define("photo", {
 		notNull: true,
 	},
 	description: {
-			type: Sequelize.STRING(150),
+		type: Sequelize.STRING(150),
 	},
 	filename: {
-			type: Sequelize.STRING,
+		type: Sequelize.STRING,
+		notNull: true,
 	},
+
+
 });
 
 
 Photos.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
-	const filePath = "/thumbnails/" + this.get("id") + ".jpg";
+	const filePath = "/thumbnails/" + this.get("filename") + ".jpg";
+	console.log(filePath);
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
@@ -46,10 +50,10 @@ Photos.prototype.getThumbnailSrc = function() {
 	}
 };
 
-Photos.prototype.getPreviewSrc = function() {
+Photos.prototype.getPreviewSrc = function(file) {
 	// Check if I have a preview available in assets/previews!
 	// Otherwise return null, to display a "no preview" message
-	const filePath = "/previews/" + this.get("id") + ".jpg";
+	const filePath = "/previews/" + file.filename + ".jpg";
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
