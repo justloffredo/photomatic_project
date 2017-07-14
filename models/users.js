@@ -108,7 +108,7 @@ User.prototype.upload = function(file, req) {
 			// If I'm an image, we should generate thumbnail
 			// and preview images as well.
 			if (file.mimetype.includes("image/")) {
-				Jimp.read(file.path).then(function(img) {
+				return Jimp.read(file.path).then(function(img) {
 						img.quality(80).resize(Jimp.AUTO, 400);
 						return img.write("assets/previews/" + file.filename + ".jpg");
 					})
