@@ -99,6 +99,12 @@ text-align: center;
 /*Login Form & Sign Up Form
 **
 ***/
+.welcome {
+	float: left;
+	font-weight: normal;
+	padding-left: 10px;
+	font-size: 22px;
+}
 
 .Form {
 	position: absolute;
