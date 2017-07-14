@@ -49,7 +49,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 
 	// Otherwise, try an upload
 	req.user.upload(req.file).then(function() {
-		res.redirect("preview/:photoId");
+		res.redirect("preview");
 	})
 	.catch(function(err) {
 		console.error("Something went wrong with upload", err);
@@ -79,8 +79,8 @@ router.get("/photo/preview/:photoId", function(req, res) {
 });
 
 // Download a document, if it exists
-router.get("/download/:fileId", function(req, res) {
-	Photo.findById(req.params.fileId).then(function(file) {
+router.get("/download/:photoId", function(req, res) {
+	Photo.findById(req.params.photoId).then(function(file) {
 		if (file) {
 			res.download("uploads/" + file.get("id"), file.get("originalName"));
 		}
