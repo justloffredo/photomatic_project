@@ -21,6 +21,15 @@ router.get("/gallery", function(req, res) {
 	});
 });
 
+router.get("/preview/:photoId", function(req, res) {
+	Photo.findById(req.params.photoId).then(function(photo) {
+		renderTemplate(res, "preview", "Preview", {
+			username: req.user.get("username"),
+			photo: photo,
+		});
+	});
+});
+
 // upload photo
 // Render an upload form that POSTs to /docs/upload
 router.get("/upload", function(req, res) {
@@ -33,45 +42,45 @@ router.get("/upload", function(req, res) {
 router.post("/upload", uploader.single("file"), function(req, res) {
 	// Make sure they sent a file
 	if (!req.file) {
-		return renderTemplate(req, res, "Upload a File", "upload", {
+		return renderTemplate(res, "upload", "Upload", {
 			error: "You must choose a file to upload",
 		});
 	}
 
 	// Otherwise, try an upload
-	req.user.upload(req.file).then(function() {
-		res.redirect("/preview?success=1");
+	req.user.upload(req.file).then(function(photo) {
+		res.redirect("preview/" + photo.get("id"));
 	})
 	.catch(function(err) {
 		console.error("Something went wrong with upload", err);
-		renderTemplate(req, res, "Upload a File", "upload", {
+		renderTemplate(res, "upload", "Upload", {
 			error: "Something went wrong, please try a different file",
 		});
 	});
 });
 
 // Render an individual document
-router.get("/photo/:photoId", function(req, res) {
-	Photo.findById(req.params.fileId).then(function(file) {
-		if (file) {
-			renderTemplate(req, res, file.get("name"), "document", {
-				file: file,
-			});
-		}
-		else {
-			res.status(404);
-			renderTemplate(req, res, "Not Found", "404");
-		}
-	})
-	.catch(function(err) {
-		console.error("Error while fetching file " + req.params.fileId, err);
-		res.status(500).send("Something went wrong!");
-	});
-});
+// router.get("preview/:photoId", function(req, res) {
+// 	Photo.findById(req.params.photoId).then(function(photo) {
+// 		if (photo) {
+// 			renderTemplate(res, "preview", photo.get("name"), {
+// 				photo: photo,
+// 			});
+// 		}
+// 		else {
+// 			res.status(404);
+// 			renderTemplate(res, "404", "Not Found");
+// 		}
+// 	})
+// 	.catch(function(err) {
+// 		console.error("Error while fetching file " + req.params.photoId, err);
+// 		res.status(500).send("Something went wrong!");
+// 	});
+// });
 
 // Download a document, if it exists
-router.get("/download/:fileId", function(req, res) {
-	Photo.findById(req.params.fileId).then(function(file) {
+router.get("/download/:photoId", function(req, res) {
+	Photo.findById(req.params.photoId).then(function(file) {
 		if (file) {
 			res.download("uploads/" + file.get("id"), file.get("originalName"));
 		}

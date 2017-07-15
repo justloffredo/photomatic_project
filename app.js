@@ -45,7 +45,11 @@ app.get("*", function(req, res) {
 });
 
 
+<<<<<<< HEAD
 sql.sync({ force: true }).then(function() {
+=======
+sql.sync( ).then(function() {
+>>>>>>> 4a6de49bdc38f2793e4785da944f8b109953d0f8
 	console.log("Database synced");
 	const port = process.env.PORT || 3000;
 
