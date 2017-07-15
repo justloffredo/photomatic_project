@@ -7,7 +7,7 @@ const router = express.Router();
 // router.use(requireLoggedOut);
 
 
-
+// SIGN UP
 
 router.get("/signup", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
@@ -32,8 +32,11 @@ router.post("/signup", function(req, res) {
 				});
 			});
 		};
-	});	
+	});
 
+// END SIGN UP
+
+// LOGIN
 
 router.get("/login", function(req, res) {
 	renderUserTemp(res, "login", "Login", {
@@ -53,15 +56,17 @@ router.post("/login", function(req, res) {
 			});
 		});
 });
+// END LOGIN
 
-
+//	LOGOUT
 
 router.get("/logout", function(req, res) {
-	req.session.userid = null;
-	req.user = null;
+	req.session.destroy(function(err) {
+		if (err) throw err;
+		res.redirect("/user/signup");
+	});
 	console.log(req.session);
-	res.redirect("/");
 });
-
+//	END LOGOUT
 
 module.exports = router;
