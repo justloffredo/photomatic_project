@@ -89,6 +89,7 @@ User.prototype.comparePassword = function(pw) {
 
 
 User.prototype.upload = function(file, req) {
+	let photo;
 	return this.createPhoto({
 			id: file.id,
 			size: file.size,
@@ -97,16 +98,19 @@ User.prototype.upload = function(file, req) {
 			description: file.description,
 			filename: file.filename,
 		})
-		.then(function() {
+
+		.then(function(p) {
+			photo = p;
 			const ext = path.extname(file.originalname);
 			const dest = "assets/files/" + file.filename + ext;
 			return fs.copy(file.path, dest);
+
 		})
 		.then(function() {
 			// If I'm an image, we should generate thumbnail
 			// and preview images as well.
 			if (file.mimetype.includes("image/")) {
-				Jimp.read(file.path).then(function(img) {
+				return Jimp.read(file.path).then(function(img) {
 						img.quality(80).resize(Jimp.AUTO, 400);
 						return img.write("assets/previews/" + file.filename + ".jpg");
 					})
@@ -114,8 +118,13 @@ User.prototype.upload = function(file, req) {
 						img.cover(64, 64);
 						return img.write("assets/thumbnails/" + file.filename + ".jpg");
 					});
-			}
-		});
+
+				}
+			})
+			.then(function(){
+				return photo;
+			});
+
 };
 
 module.exports = User;

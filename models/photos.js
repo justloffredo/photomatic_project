@@ -50,10 +50,10 @@ Photos.prototype.getThumbnailSrc = function() {
 	}
 };
 
-Photos.prototype.getPreviewSrc = function(file) {
+Photos.prototype.getPreviewSrc = function() {
 	// Check if I have a preview available in assets/previews!
 	// Otherwise return null, to display a "no preview" message
-	const filePath = "/previews/" + file.filename + ".jpg";
+	const filePath = "/previews/" +  this.get("filename") + ".jpg";
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
