@@ -1,10 +1,12 @@
 <div class="document">
-	<h1><%- photo.get("originalName") %></h1>
+
 	<% if (photo.getPreviewSrc()) { %>
 		<img class="document-preview" src="<%- photo.getPreviewSrc() %>"/>
 	<% } else { %>
 		<div class="document-preview noPreview">No preview available</div>
 	<% } %>
+	<h5><%- photo.get("description") %></h5>
 
 	<a class="document-download button" href="/docs/download/<%- photo.get('id') %>">Download</a>
+
 </div>
