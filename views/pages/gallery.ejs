@@ -4,12 +4,8 @@
 
 
 	<% for (let i = 0; i < photos.length; i++) { %>
-		
-		<p>
-		<a href = "/photo/preview/<%- photos[i].get('id') %>">
-			<img src ="<%- photos[i].getThumbnailSrc() %>"/>
-			<p>
-			<%- photos[i].get("originalName") %>
-		</p>
+		<a href = "/photo/photo/<%- photos[i].get('id') %>">
+			<img class= "gallery-image" src  ="<%- photos[i].getThumbnailSrc() %>"/>
+
+
 	<% } %>
-</div>
