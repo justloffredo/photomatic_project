@@ -132,11 +132,11 @@ text-align: center;
 }
 
 input,
-			button {
+			/*button {
 				display: block;
 				width: 100%;
 				height: 40%;
-			}
+			}*/
 
 .submit {
 	background-color: #4fabc9;
@@ -147,5 +147,31 @@ input,
 ***/
 
 #upload {
+	background-color: #4fabc9;
+}
+
+/*
+** Comments and Likes
+***/
+.comments-comment {
+	text-align: center;
+	display: block;
+	height: 20%;
+	width: 20%
+}
+
+.comments-comment-text {
+	padding: 3px 75px 75px 3px;
+	/*text-align: center;
+	display: block;
+	height: 30%;
+	width: 40%*/
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#photo-like {
 	background-color: #4fabc9;
 }

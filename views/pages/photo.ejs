@@ -1,14 +1,22 @@
+
+<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+<link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+
 <div class="full-photo">
 
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+<p>
+		<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
+			Like
+		</button>
 
-	<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
-		X
-	<button>
-	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+			<button>
+				<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+			</button>
 
-<p class=  "photo-description"> <%- photo.get("description") %></p>
+				<p class=  "photo-description"> <%- photo.get("description") %></p>
 
 
 <% if (comments && comments.length) { %>
