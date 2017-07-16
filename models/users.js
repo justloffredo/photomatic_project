@@ -115,16 +115,18 @@ User.prototype.upload = function(file, req) {
 						return img.write("assets/previews/" + file.filename + ".jpg");
 					})
 					.then(function(img) {
-						img.cover(64, 64);
+						img.cover(400, 300);
 						return img.write("assets/thumbnails/" + file.filename + ".jpg");
 					});
 
 				}
 			})
-			.then(function(){
+			.then(function() {
 				return photo;
 			});
 
 };
+
+
 
 module.exports = User;

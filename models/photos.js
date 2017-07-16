@@ -1,8 +1,8 @@
 const sql = require("../utility/sql");
 const Sequelize = require("sequelize");
 const Tags = require("./tags");
-const Comments = require("./comments");
-const Likes = require("./likes");
+const Comment = require("./comments");
+const Like = require("./likes");
 
 const fs = require("fs");
 
@@ -62,7 +62,7 @@ Photos.prototype.getPreviewSrc = function() {
 
 Tags.belongsToMany(Photos, { through: "photos_tags" });
 Photos.belongsToMany(Tags, { through: "photos_tags" });
-Photos.hasMany(Comments);
-Photos.hasMany(Likes);
+Photos.hasMany(Comment);
+Photos.hasMany(Like);
 
 module.exports = Photos;
