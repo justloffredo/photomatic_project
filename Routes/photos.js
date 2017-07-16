@@ -2,10 +2,12 @@ const express = require ("express");
 const router = express.Router();
 const User = require("../models/users.js");
 const Photo = require("../models/photos.js");
+const Comments = require("../models/comments.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const BodyParser = require("body-parser");
 const multer = require("multer");
 const requireLoggedIn = require("../middleware/requireLoggedIn");
+const renderPhoto = require("../utility/renderPhoto.js");
 
 const Sequelize = require("sequelize");
 
@@ -13,7 +15,7 @@ const uploader = multer({ dest: "uploads/" });
 router.use(requireLoggedIn);
 
 router.get("/gallery", function(req, res) {
-	Photo.findAll().then(function(photos) {
+	Photo.findAll({ order: [['createdAt', 'DESC']] }).then(function(photos) {
 		renderTemplate(res, "gallery", "Gallery", {
 			username: req.user.get("username"),
 			photos: photos,
@@ -59,26 +61,40 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 	});
 });
 
-// Render an individual document
-// router.get("preview/:photoId", function(req, res) {
-// 	Photo.findById(req.params.photoId).then(function(photo) {
-// 		if (photo) {
-// 			renderTemplate(res, "preview", photo.get("name"), {
-// 				photo: photo,
-// 			});
-// 		}
-// 		else {
-// 			res.status(404);
-// 			renderTemplate(res, "404", "Not Found");
-// 		}
-// 	})
-// 	.catch(function(err) {
-// 		console.error("Error while fetching file " + req.params.photoId, err);
-// 		res.status(500).send("Something went wrong!");
-// 	});
-// });
+router.get("/photo/:photoId", function(req, res) {
+	renderPhoto(res, req.params.photoId);
+});
 
-// Download a document, if it exists
+router.post("/comment", function(req,res) {
+	if (!req.body.photoId || !req.body.text) {
+		return res.status(500).send("Missing required comment field");
+	}
+	Photo.findById(req.body.photoId).then(function(photo) {
+		if (photo) {
+			photo.createComment({
+				text: req.body.text,
+			})
+			.then(function() {
+				res.redirect("/photo/photo/" + photo.get("id"));
+			});
+		}
+		else {
+			res.render(res, "404");
+		}
+	});
+});
+
+router.get("/comment/:photoId", function(req, res) {
+	Photo.findById(req.params.photoId).then(function(photo) {
+	renderTemplate(res, "commentForm", "Comment", {
+		photo: photo,
+		});
+	});
+});
+
+
+
+
 router.get("/download/:photoId", function(req, res) {
 	Photo.findById(req.params.photoId).then(function(file) {
 		if (file) {

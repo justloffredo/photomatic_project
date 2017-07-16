@@ -1,0 +1,15 @@
+<form class = "commentForm" method = "POST" id = "comment-form" action="/photo/comment" >
+
+
+
+
+
+		Comment
+		<textarea name= "text" class= "comment-text-field" placeholder="Place your comment here" />
+		</textarea>
+		<input name="photoId" type="hidden" value="<%- photo.get("id") %>"/>
+
+
+
+	<button class ="submit">Submit</button>
+</form>
