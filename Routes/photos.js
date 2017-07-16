@@ -28,6 +28,8 @@ router.get("/preview/:photoId", function(req, res) {
 		renderTemplate(res, "preview", "Preview", {
 			username: req.user.get("username"),
 			photo: photo,
+			description: req.body.description,
+
 		});
 	});
 });
@@ -42,7 +44,7 @@ router.get("/upload", function(req, res) {
 
 // Upload the form at GET /upload
 router.post("/upload", uploader.single("file"), function(req, res) {
-	// Make sure they sent a file
+// Make sure they sent a file
 	if (!req.file) {
 		return renderTemplate(res, "upload", "Upload", {
 			error: "You must choose a file to upload",
@@ -50,7 +52,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 	}
 
 	// Otherwise, try an upload
-	req.user.upload(req.file).then(function(photo) {
+	req.user.upload(req.file, req).then(function(photo) {
 		res.redirect("preview/" + photo.get("id"));
 	})
 	.catch(function(err) {
