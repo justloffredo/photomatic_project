@@ -63,10 +63,17 @@
 
 #signup {
 	background-color: #4fabc9;
+	color: white;
 }
 
 #login {
 	color: white;
+	background-color: #4fabc9;
+}
+
+#logout {
+	color: white;
+	background-color: #4fabc9;
 }
 
 i {
@@ -99,6 +106,7 @@ text-align: center;
 /*Login Form & Sign Up Form
 **
 ***/
+
 .welcome {
 	float: left;
 	font-weight: normal;
@@ -132,11 +140,11 @@ text-align: center;
 }
 
 input,
-			/*button {
+			button {
 				display: block;
 				width: 100%;
 				height: 40%;
-			}*/
+			}
 
 .submit {
 	background-color: #4fabc9;
@@ -146,13 +154,22 @@ input,
 **
 ***/
 
+
+
 #upload {
 	background-color: #4fabc9;
+	color: white;
 }
 
 /*
-** Comments and Likes
+** Comments and Likes on the Photo page
 ***/
+
+.photo-full {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .comments-comment {
 	text-align: center;
 	display: block;
@@ -174,4 +191,12 @@ a:link {
 
 #photo-like {
 	background-color: #4fabc9;
+}
+
+/*
+** GALLERY IMAGE
+***/
+
+.gallery-image {
+	padding-top: 10px;
 }
