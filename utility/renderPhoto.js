@@ -1,4 +1,5 @@
 const Photos = require("../models/photos.js");
+const Like = require("../models/likes.js");
 const renderTemplate = require("./renderTemplate.js");
 
 function renderPhoto(res, photoId) {
@@ -19,11 +20,12 @@ function renderPhoto(res, photoId) {
 			comments = com;
 			return photo.getLikes();
 			})
-		.then(function(likes) {
+		.then(function(like) {
+			console.log(like);
 			renderTemplate(res, "photo", "Photo", {
 				photo: photo,
 				comments: comments,
-				likes: likes,
+				like: like,
 			});
 		})
 		.catch(function(err) {

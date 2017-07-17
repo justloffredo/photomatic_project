@@ -24,6 +24,7 @@ const apiRoutes = require("./Routes/api");
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser(cookieSecret));
 app.use(session({
 	secret: cookieSecret,

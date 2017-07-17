@@ -2,16 +2,24 @@
 
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+	<form class= "photo-like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+	<button class = "photo-like">X</button>
+	</form>
 
-	<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
-		X
-	<button>
 	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+
+	<% for (let i = 0; i < like.length; i++) { %>
+		<div class="like">
+				<img class = "likes" src= "/app-images/polaroid.jpg"/>
+			</div>
+	<% } %>
+
+
 
 <p class=  "photo-description"> <%- photo.get("description") %></p>
 
-
-<% if (comments && comments.length) { %>
+	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
 			 <div class="comments-comment-text">
@@ -22,7 +30,4 @@
  <% } else { %>
 	 <p class="comments-empty">No comments here!</p>
  <% } %>
-
-
-
-</div>
+	</div>

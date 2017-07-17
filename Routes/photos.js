@@ -77,9 +77,9 @@ router.post("/comment", function(req,res) {
 				text: req.body.text,
 			})
 			.then(function() {
-				res.redirect("/photo/photo/" + photo.get("id"));
-			});
-		}
+				renderPhoto(res, req.params.photoId);
+		});
+	}
 		else {
 			res.render(res, "404");
 		}
@@ -89,16 +89,39 @@ router.post("/comment", function(req,res) {
 router.get("/comment/:photoId", function(req, res) {
 	Photo.findById(req.params.photoId).then(function(photo) {
 	renderTemplate(res, "commentForm", "Comment", {
-		photo: photo,
-		});
+		photo: photo,});
+	});
+});
+
+router.post("/like/:photoid", function(req, res) {
+	if (!req.params.photoid) {
+		return res.status(500).send("Missing photo id");
+	}
+	Photo.findById(req.params.photoid).then(function(photo) {
+			if (photo) {
+				 photo.Like(req, req.params.photoid)
+				.then(function() {
+					res.redirect("/photo/photo/" + photo.get("id"));
+				})
+			.catch(function(error) {
+				res.status(400);
+			});
+			}
+		else {
+				res.render(404);
+			};
+			// res.render(404)
 	});
 });
 
 
 
 
+
+
+
 router.get("/download/:photoId", function(req, res) {
-	Photo.findById(req.params.photoId).then(function(file) {
+	Photo.findById(req.params.photoid).then(function(file) {
 		if (file) {
 			res.download("uploads/" + file.get("id"), file.get("originalName"));
 		}
