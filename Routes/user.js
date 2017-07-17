@@ -10,6 +10,12 @@ const router = express.Router();
 
 // SIGN UP
 
+router.get("/", function(req, res, error) {
+	renderUserTemp(res, "signup", "Signup", {
+	});
+});
+
+
 router.get("/signup", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
 	});
