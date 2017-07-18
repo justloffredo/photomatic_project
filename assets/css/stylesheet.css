@@ -108,6 +108,7 @@ i {
 	padding-left: 10px;
 	font-size: 22px;
 	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+	text-decoration: none;
 }
 
 .welcome {

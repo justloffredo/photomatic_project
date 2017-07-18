@@ -36,12 +36,15 @@ router.post("/login", function(req, res) {
 	});
 
 
-router.delete("/photo/:photoId", function(req,res) {
+router.delete("/photo/:photoId", function(req, res) {
 	Photo.findById(req.params.photoId)
 		.then(function(photo) {
 			if (photo) {
 				photo.destroy();
 				res.json({ photo: photo });
+
+
+
 			}
 			else {
 				res.status(404);
@@ -52,6 +55,9 @@ router.delete("/photo/:photoId", function(req,res) {
 			res.status(500);
 			res.json({ error: "Unable to delete file" });
 		});
+
+
+
 });
 
 

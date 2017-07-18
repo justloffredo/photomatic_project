@@ -1,16 +1,10 @@
-
 <link rel="stylesheet" types="text.css" href="/css/normalize.css">
 <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
 <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
 
-<<<<<<< HEAD
+
 <a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
 <div class="full-photo">
-
-=======
->>>>>>> 7485451a9c943b48a2f22bc98df98c22888b8f80
-<div class="full-photo">
-
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 	<p class="photo-description"> <%- photo.get("description") %></p>
@@ -27,12 +21,8 @@
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
 
-<<<<<<< HEAD
 			 <b><font color="blue"><%= args.username %></font></b>
 			 	<div class="comments-comment-text">
-=======
-			 <b><font color="blue"><%= args.username %></b></font> <div class="comments-comment-text">
->>>>>>> 7485451a9c943b48a2f22bc98df98c22888b8f80
 				 <%- comments[i].get("text") %>
 			 </div>
 		 </div>
@@ -46,3 +36,5 @@
 
 
 </div>
+
+<script src="/js/delete.js"></script>

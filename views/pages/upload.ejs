@@ -5,15 +5,17 @@
 <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
 
 <form class="upload" enctype="multipart/form-data" method="post">
+
 	<% if (typeof error !== "undefined") { %>
 		<p class="upload-error">
 			<%- error %>
 		</p>
 	<% } %>
+
 	<input type="file" name="file"/>
 	<textarea name="description" rows="8" cols="80" placeholder="Please Enter A Description"></textarea>
 
-	<button id="upload">Upload</button>
+	<button id="upload" class="button">Upload</button>
 
 
 </form>
