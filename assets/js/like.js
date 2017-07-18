@@ -1,4 +1,4 @@
-/* glabals $ */
+/* globals $ */
 
 $(document).ready(function() {
 
