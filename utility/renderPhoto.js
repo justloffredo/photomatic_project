@@ -26,6 +26,7 @@ function renderPhoto(res, photoId) {
 				likes = i + 1;
 			}
 			renderTemplate(res, "photo", "Photo", {
+				username: req.user.get("username"),
 				photo: photo,
 				comments: comments,
 				likes: likes,
