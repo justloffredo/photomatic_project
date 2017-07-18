@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" types="text.css" href="/css/normalize.css">
 <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
 <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
@@ -10,22 +11,34 @@
 
 
 
-	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 
 <p class=  "photo-description"> <%- photo.get("description") %></p>
 
-<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
 
-<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
-<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
-<button class = "photo-like">Like</button>
-</form>
 
-<p class= "likes"><%- likes %></p>
+			<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
 
-<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
-<p>
 
+
+				<div class="likes"><%- likes %> <button class = "photo-like">Like</button>
+					<form id ="btn-like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+						<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+
+				</div>
+					</form>
+
+
+
+</div>
+	</div>
+		</div>
+
+
+					<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
+
+
+<div class="commentcontainer">
 	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
@@ -40,3 +53,6 @@
  <% } %>
 	</div>
 <script src="/js/delete.js"></script>
+</div>
+</div>
+</div>

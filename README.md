@@ -175,3 +175,6 @@
 ## Heroku Address for Photomatic
 
 * https://photoproject.herokuapp.com/
+* To test the app, please use the following information:
+username: test
+password: test 

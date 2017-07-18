@@ -166,7 +166,7 @@ width: 100%;
 input, textarea
 			 {
 				display: block;
-				width: 100%;
+				width: 60%;
 				height: 40%;
 				display: block;
 			  margin-left: auto;
@@ -210,6 +210,17 @@ margin-right: auto;
 ** Comments and Likes on the Photo page
 ***/
 
+.likes {
+	text-align: center;
+}
+
+#comment {
+	text-align: center;
+	padding-top: 30px;
+	font-size: 45px;
+	font-weight: bold;
+}
+
 .comments-empty {
 	text-align: center;
 }
@@ -219,11 +230,11 @@ margin-right: auto;
 	padding-bottom: 10px;
 }
 
-.comments-comment {
+/*.comments-comment {
 	text-align: center;
 	display: block;
-	height: 20%;
-	width: 20%
+	height: 30%;
+	width: 40%*/
 }
 
 .comments-comment-text {
@@ -232,6 +243,10 @@ margin-right: auto;
 	/*display: block;
 	height: 30%;
 	width: 40%*/
+}
+
+.commentcontainer {
+	text-align: center;
 }
 
 a:link {
@@ -249,6 +264,7 @@ a:link {
 	bottom: 20px;
 	width: 100%;
 }
+
 
 /*
 ** GALLERY IMAGE AND PHOTO PAGE
@@ -290,6 +306,15 @@ button {
 	display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.delete-button.button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+	background-color: #4fabc9;
 }
 
 /**********************
