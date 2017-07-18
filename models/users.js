@@ -7,7 +7,7 @@ const Photos = require("./photos");
 const Comments = require("./comments");
 const path = require("path");
 const Jimp = require("jimp");
-
+const BodyParser = require("body-parser");
 
 function hashUserPassword(user) {
 	if (user.password) {
@@ -95,7 +95,7 @@ User.prototype.upload = function(file, req) {
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
-			description: file.description,
+			description: req.body.description,
 			filename: file.filename,
 		})
 
@@ -115,16 +115,18 @@ User.prototype.upload = function(file, req) {
 						return img.write("assets/previews/" + file.filename + ".jpg");
 					})
 					.then(function(img) {
-						img.cover(64, 64);
+						img.cover(400, 300);
 						return img.write("assets/thumbnails/" + file.filename + ".jpg");
 					});
 
 				}
 			})
-			.then(function(){
+			.then(function() {
 				return photo;
 			});
 
 };
+
+
 
 module.exports = User;
