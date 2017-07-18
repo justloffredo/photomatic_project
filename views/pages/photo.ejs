@@ -7,6 +7,11 @@
 <div class="full-photo">
 
 
+
+
+	<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
+
+
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 	<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
 	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
