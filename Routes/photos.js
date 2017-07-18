@@ -75,6 +75,7 @@ router.post("/comment", function(req,res) {
 		if (photo) {
 			photo.createComment({
 				text: req.body.text,
+				userid : req.session.userid,
 			})
 			.then(function() {
 				renderPhoto(res, req.params.photoId);
@@ -93,13 +94,15 @@ router.get("/comment/:photoId", function(req, res) {
 	});
 });
 
-router.post("/like/:photoid", function(req, res) {
-	if (!req.params.photoid) {
-		return res.status(500).send("Missing photo id");
+router.post("/like/:photoId", function(req, res) {
+	if (!req.params.photoId) {
+		return res.status(500).send("Missing photo Id");
 	}
-	Photo.findById(req.params.photoid).then(function(photo) {
+	Photo.findById(req.params.photoId).then(function(photo) {
 			if (photo) {
-				 photo.Like(req, req.params.photoid)
+				 photo.createLike({
+					 userid : req.session.userid,
+				 })
 				.then(function() {
 					res.redirect("/photo/photo/" + photo.get("id"));
 				})
@@ -110,7 +113,6 @@ router.post("/like/:photoid", function(req, res) {
 		else {
 				res.render(404);
 			};
-			// res.render(404)
 	});
 });
 

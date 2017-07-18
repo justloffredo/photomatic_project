@@ -9,12 +9,7 @@
 
 	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
 
-	<% for (let i = 0; i < like.length; i++) { %>
-		<div class="like">
-				<img class = "likes" src= "/app-images/polaroid.jpg"/>
-			</div>
-	<% } %>
-
+	<p class= "likes"><%- likes %></p>
 
 
 <p class=  "photo-description"> <%- photo.get("description") %></p>

@@ -1,15 +1,16 @@
 const Photos = require("../models/photos.js");
-const Like = require("../models/likes.js");
 const renderTemplate = require("./renderTemplate.js");
 
 function renderPhoto(res, photoId) {
 	let photo;
 	let comments;
+	let likes;
 
 	Photos.findById(photoId)
 		.then(function(foto) {
 			if(foto) {
 				photo = foto;
+				console.log(photo);
 				return photo.getComments();
 			}
 			else {
@@ -21,11 +22,13 @@ function renderPhoto(res, photoId) {
 			return photo.getLikes();
 			})
 		.then(function(like) {
-			console.log(like);
+			for (let i = 0; i < like.length; i++) {
+				likes = i + 1;
+			}
 			renderTemplate(res, "photo", "Photo", {
 				photo: photo,
 				comments: comments,
-				like: like,
+				likes: likes,
 			});
 		})
 		.catch(function(err) {

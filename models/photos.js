@@ -62,26 +62,6 @@ Photos.prototype.getPreviewSrc = function() {
 	return null;
 };
 
-Photos.prototype.Like = function(req,photoId) {
-	return Like.upsert({
-		userid: req.session.userid,
-		photoId: photoId,
-	})
-	.then(function(like) {
-		if (like) {
-			// res.status(200);
-			// res.send("Successfully stored");
-			return 0;
-		}
-		else {
-			console.log("Else statement");
-			// res.status(200);
-			// res.send("Successfully inserted");
-		}
-	});
-};
-
-// Photos.findAll({includes: [Lke]}).then(data=>console.log(data));
 
 Tags.belongsToMany(Photos, { through: "photos_tags" });
 Photos.belongsToMany(Tags, { through: "photos_tags" });

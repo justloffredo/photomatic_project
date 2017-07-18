@@ -8,7 +8,7 @@ const Like = sql.define("like", {
 		autoIncrement: true,
 	},
 	userid: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.STRING,
 	},
 });
 
