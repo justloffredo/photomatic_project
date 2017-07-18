@@ -1,0 +1,41 @@
+
+<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+<link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+
+<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
+<div class="full-photo">
+
+<div class="full-photo">
+
+
+	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+	<p class="photo-description"> <%- photo.get("description") %></p>
+<p>
+		<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
+			Like
+		</button>
+
+			<button>
+				<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+			</button>
+
+<% if (comments && comments.length) { %>
+	 <% for (let i = 0; i < comments.length; i++) { %>
+		 <div class="comments-comment">
+
+			 <b><font color="blue"><%= args.username %></font></b>
+			 	<div class="comments-comment-text">
+				 <%- comments[i].get("text") %>
+			 </div>
+		 </div>
+	 <% } %>
+ <% } else { %>
+	 <p class="comments-empty">No comments here!</p>
+ <% } %>
+
+
+
+
+
+</div>
