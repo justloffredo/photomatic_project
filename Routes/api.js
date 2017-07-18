@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/users.js");
 const Photo = require("../models/photos.js");
+const Like = require("../models/likes.js");
 const renderTemplate = require("../utility/renderTemplate.js");
 const router = express.Router();
 
@@ -21,6 +22,28 @@ router.post("/signup", function(req,res) {
 			});
 });
 
+router.post("/like/:photoId", function(req, res) {
+	if (!req.body.photoid) {
+		return res.status(500).send("Missing photo id");
+	}
+	Photo.findById(req.params.photoId).then(function(photo) {
+			if (photo) {
+				 photo.Like(req.userid)
+				.then(function(like) {
+					res.json({ like: like });
+				})
+			.catch(function(error) {
+				res.status(400);
+				res.json({ error: error });
+			});
+			}
+		else {
+				res.render(404);
+			};
+	});
+
+});
+
 
 router.post("/login", function(req, res) {
 		User.login(req)
@@ -34,6 +57,7 @@ router.post("/login", function(req, res) {
 				error: "Invalid username or password"});
 		});
 	});
+
 
 
 router.delete("/photo/:photoId", function(req,res) {

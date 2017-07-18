@@ -15,8 +15,13 @@ router.get("/signup", function(req, res, error) {
 });
 
 router.post("/signup", function(req, res) {
+	if (req.body.username === "" || req.body.password === "" || req.body.confirmpassword === "") {
+		return renderUserTemp(res, "signup", "Signup", {
+			error: "Please fill in all required fields",
+		});
+	}
 	if (req.body.password !== req.body.confirmpassword) {
-		renderUserTemp(res, "signup", "Signup", {
+		return renderUserTemp(res, "signup", "Signup", {
 			error: "Your password fields do no match",
 		});
 	}
