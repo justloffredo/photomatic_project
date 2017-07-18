@@ -1,3 +1,4 @@
+
 const express = require("express");
 const User = require("../models/users.js");
 const renderUserTemp = require("../utility/renderauth.js");
@@ -23,7 +24,8 @@ router.post("/signup", function(req, res) {
 	else {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/user/login");
+				// res.redirect("/user/login");
+				res.redirect("/photo/upload");
 			})
 			.catch(function(err) {
 				res.status(400);

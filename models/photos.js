@@ -3,6 +3,8 @@ const Sequelize = require("sequelize");
 const Tags = require("./tags");
 const Comment = require("./comments");
 const Like = require("./likes");
+const User = require("./users.js");
+
 
 const fs = require("fs");
 
@@ -59,6 +61,7 @@ Photos.prototype.getPreviewSrc = function() {
 	}
 	return null;
 };
+
 
 Tags.belongsToMany(Photos, { through: "photos_tags" });
 Photos.belongsToMany(Tags, { through: "photos_tags" });

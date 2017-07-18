@@ -29,7 +29,6 @@ router.get("/preview/:photoId", function(req, res) {
 			username: req.user.get("username"),
 			photo: photo,
 			description: req.body.description,
-
 		});
 	});
 });
@@ -39,6 +38,7 @@ router.get("/preview/:photoId", function(req, res) {
 router.get("/upload", function(req, res) {
 	// renderTemplate(req, res, "Upload a File", "upload");
 	renderTemplate(res, "upload", "Upload", {
+		username: req.user.get("username"),
 	});
 });
 
@@ -47,6 +47,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 // Make sure they sent a file
 	if (!req.file) {
 		return renderTemplate(res, "upload", "Upload", {
+			username: req.user.get("username"),
 			error: "You must choose a file to upload",
 		});
 	}
@@ -64,7 +65,7 @@ router.post("/upload", uploader.single("file"), function(req, res) {
 });
 
 router.get("/photo/:photoId", function(req, res) {
-	renderPhoto(res, req.params.photoId);
+	renderPhoto(res, req.params.photoId, req);
 });
 
 router.post("/comment", function(req,res) {

@@ -1,15 +1,19 @@
+
+<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+<link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+
 <form class = "commentForm" method = "POST" id = "comment-form" action="/photo/comment" >
 
-
-
-
-
+<p1>
 		Comment
+</p1>
+
+<p>
 		<textarea name= "text" class= "comment-text-field" placeholder="Place your comment here" />
 		</textarea>
 		<input name="photoId" type="hidden" value="<%- photo.get("id") %>"/>
-
-
+</p>
 
 	<button class ="submit">Submit</button>
 </form>
