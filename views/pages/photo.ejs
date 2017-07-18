@@ -7,6 +7,7 @@
 
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+	<p class="photo-description"> <%- photo.get("description") %></p>
 <p>
 		<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
 			Like
@@ -16,13 +17,11 @@
 				<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
 			</button>
 
-				<p class=  "photo-description"> <%- photo.get("description") %></p>
-
-
 <% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
-			 <div class="comments-comment-text">
+
+			 <b><font color="blue"><%= args.username %></b></font> <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
 		 </div>
@@ -30,6 +29,8 @@
  <% } else { %>
 	 <p class="comments-empty">No comments here!</p>
  <% } %>
+
+
 
 
 

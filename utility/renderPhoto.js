@@ -1,7 +1,7 @@
 const Photos = require("../models/photos.js");
 const renderTemplate = require("./renderTemplate.js");
 
-function renderPhoto(res, photoId) {
+function renderPhoto(res, photoId, req) {
 	let photo;
 	let comments;
 
@@ -21,6 +21,7 @@ function renderPhoto(res, photoId) {
 			})
 		.then(function(likes) {
 			renderTemplate(res, "photo", "Photo", {
+				username: req.user.get("username"),
 				photo: photo,
 				comments: comments,
 				likes: likes,

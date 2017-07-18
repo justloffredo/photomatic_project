@@ -1,37 +1,44 @@
+<head>
+  <title>Photomatic</title>
 
-    <title>Photomatic</title>
+<%/* CSS */%>
+
+  <meta name="viewport" content="width-device-width, initial scale=1">
+  <link rel="stylesheet" types="text.css" href="/css/cssReset.css">
+  <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+  <link rel="stylesheet" types="text.css" href="/css/normalize.css">
+  <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+  <link rel="stylesheet" types="text.css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body class = "bodytemp" id="back-image">
+
+<%/* NAVIGATION BAR */%>
+
+  <div class = "template-header">
 
 
-  <body class = "bodytemp">
+      <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
+      <div class = "photomatic">Photomatic</div>
 
-<!--Navigation Bar
---------------------------------------------------------->
-	<div class = "template">
-    <div class = "template-header">
-      <nav>
-        <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
-        <div class = "photomatic">Photomatic</div>
 
-          <a href ="/user/signup"><div class = "button" id="signup">Sign Up</div></a>
-          <a href = "/user/login"><div class= "button" id="login">Login</div></a>
+        <a href = "/user/signup">
+        <div class= "button" id="signup">Sign Up</div></a>
 
-      </nav>
+        <a href ="/user/login">
+        <div class="button" id="login">Login</div></a>
 
-        <!-- <main class= "template-main">
 
-		    </main> -->
-
-    </div>
   </div>
-  <div class = "row">
-    <div class="six">Welcome to Photomatic! Let's start posting your sharing photos!
-  </div>
+
+      <div class = "message">
+        Welcome to Photomatic!!! Share your photos automatically!
+        </div>
+
+      <footer>Photomatica 2017</footer>
 
 
-<!-- Footer
---------------------------------------------------------->
-
-  <footer>Photomatic 2017</footer>
 
 </body>
-</html>
