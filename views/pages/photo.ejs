@@ -4,25 +4,32 @@
 
 
 
-<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
+
 <div class="full-photo">
 
+
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
-	<p class="photo-description"> <%- photo.get("description") %></p>
-<p>
-		<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
-			Like
-		</button>
+	<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+	<button class = "photo-like">Like</button>
+	</form>
 
-			<button>
-				<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
-			</button>
+	<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
 
-<% if (comments && comments.length) { %>
+	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+
+	<p class= "likes"><%- likes %></p>
+
+
+<p class=  "photo-description"> <%- photo.get("description") %></p>
+
+
+
+	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
-
-			 <b><font color="blue"><%= args.username %></b></font> <div class="comments-comment-text">
+		 	<b><font color="blue"><%= args.username %></font></b>
+			 <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
 		 </div>
@@ -30,11 +37,5 @@
  <% } else { %>
 	 <p class="comments-empty">No comments here!</p>
  <% } %>
-
-
-
-
-
-</div>
-
+	</div>
 <script src="/js/delete.js"></script>

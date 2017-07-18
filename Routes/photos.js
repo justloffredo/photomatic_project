@@ -95,6 +95,28 @@ router.get("/comment/:photoId", function(req, res) {
 	});
 });
 
+router.post("/like/:photoId", function(req, res) {
+	if (!req.params.photoId) {
+		return res.status(500).send("Missing photo Id");
+	}
+	Photo.findById(req.params.photoId).then(function(photo) {
+			if (photo) {
+				 photo.createLike({
+					 userid : req.session.userid,
+				 })
+				.then(function() {
+					res.redirect("/photo/photo/" + photo.get("id"));
+				})
+			.catch(function(error) {
+				res.status(400);
+			});
+			}
+		else {
+				res.render(404);
+			};
+	});
+});
+
 
 
 
