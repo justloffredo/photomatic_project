@@ -14,6 +14,7 @@ $(document).ready(function() {
 			method: "DELETE",
 			success: function() {
 				$("[data-photoid=" + photoId + "]").remove();
+				window.location="/photo/gallery";
 
 			},
 			error: function() {
