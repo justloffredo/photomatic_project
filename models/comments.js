@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const sql = require("../utility/sql");
-const commentLikes = require("./commentLikes");
+
 
 const Comment = sql.define("comment", {
 	id: {
@@ -12,9 +12,6 @@ const Comment = sql.define("comment", {
 		type: Sequelize.STRING,
 		notNull: true,
 	},
-
 });
-
-Comment.hasMany(commentLikes);
 
 module.exports = Comment;

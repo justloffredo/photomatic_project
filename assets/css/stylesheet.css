@@ -271,3 +271,26 @@ button {
 .gallery-image {
 	padding-top: 10px;
 }
+
+
+/**********************
+******** PREVIEW ******
+************************/
+
+h5 {
+	text-align: center;
+}
+
+a.document-download.button {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	background-color: #4fabc9;
+	width: 10%;
+	color: white;
+	text-align: center;
+}
+
+.document-preview {
+	padding-top: 17px;
+}

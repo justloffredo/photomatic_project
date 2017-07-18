@@ -10,8 +10,6 @@ const router = express.Router();
 
 // SIGN UP
 
-
-
 router.get("/signup", function(req, res, error) {
 	renderUserTemp(res, "signup", "Signup", {
 	});
@@ -26,7 +24,8 @@ router.post("/signup", function(req, res) {
 	else {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/user/login");
+				// res.redirect("/user/login");
+				res.redirect("/photo/upload");
 			})
 			.catch(function(err) {
 				res.status(400);
