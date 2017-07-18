@@ -9,24 +9,22 @@
 
 
 
-	<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
-
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
-	<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
-	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
-	<button class = "photo-like">Like</button>
-	</form>
-
-
-	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
-
-	<p class= "likes"><%- likes %></p>
-
 
 <p class=  "photo-description"> <%- photo.get("description") %></p>
 
+<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
 
+<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+<button class = "photo-like">Like</button>
+</form>
+
+<p class= "likes"><%- likes %></p>
+
+<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
+<p>
 
 	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>

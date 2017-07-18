@@ -182,7 +182,7 @@ input, textarea
 **
 ***/
 
-form {
+.upload {
 position: absolute;
 margin: 0 auto;
 width: 30%;
@@ -209,6 +209,10 @@ margin-right: auto;
 /*
 ** Comments and Likes on the Photo page
 ***/
+
+.comments-empty {
+	text-align: center;
+}
 
 .photo-full {
 	padding-top: 10px;
@@ -237,6 +241,13 @@ a:link {
 .photo-like {
 	background-color: #4fabc9;
 	float: inherit;
+}
+
+#btn-like {
+	text-align: center;
+	position: fixed;
+	bottom: 20px;
+	width: 100%;
 }
 
 /*
@@ -273,6 +284,13 @@ button {
 	padding-top: 10px;
 }
 
+#gallery {
+	background-color: #4fabc9;
+	color: white;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /**********************
 ******** PREVIEW ******
