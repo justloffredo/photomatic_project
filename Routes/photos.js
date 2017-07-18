@@ -75,10 +75,10 @@ router.post("/comment", function(req,res) {
 		if (photo) {
 			photo.createComment({
 				text: req.body.text,
-				userid : req.session.userid,
+				userId : req.session.userid,
 			})
 			.then(function() {
-				renderPhoto(res, req.params.photoId);
+				res.redirect("/photo/photo/" + photo.get("id"));
 		});
 	}
 		else {
