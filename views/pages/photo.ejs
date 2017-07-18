@@ -4,7 +4,7 @@
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 	<form class= "photo-like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
 	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
-	<button class = "photo-like">X</button>
+	<button class = "photo-like">Like</button>
 	</form>
 
 	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
@@ -17,6 +17,7 @@
 	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
+		 	<b><font color="blue"><%= args.username %></font></b>
 			 <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
