@@ -1,20 +1,27 @@
+
+<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+<link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+
 <div class="full-photo">
 
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+	<p class="photo-description"> <%- photo.get("description") %></p>
+<p>
+		<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
+			Like
+		</button>
 
-	<button class = "photo-like" data-photoId = "<%- photo.get("id") %>">
-		X
-	<button>
-	<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
-
-<p class=  "photo-description"> <%- photo.get("description") %></p>
-
+			<button>
+				<a href = "/photo/comment/<%- photo.get("id") %>">Comment</a>
+			</button>
 
 <% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
-			 <div class="comments-comment-text">
+
+			 <b><font color="blue"><%= args.username %></b></font> <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
 		 </div>
@@ -22,6 +29,8 @@
  <% } else { %>
 	 <p class="comments-empty">No comments here!</p>
  <% } %>
+
+
 
 
 

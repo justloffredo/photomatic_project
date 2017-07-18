@@ -7,7 +7,7 @@ const Photos = require("./photos");
 const Comments = require("./comments");
 const path = require("path");
 const Jimp = require("jimp");
-
+const BodyParser = require("body-parser");
 
 function hashUserPassword(user) {
 	if (user.password) {
@@ -95,7 +95,7 @@ User.prototype.upload = function(file, req) {
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
-			description: file.description,
+			description: req.body.description,
 			filename: file.filename,
 		})
 
