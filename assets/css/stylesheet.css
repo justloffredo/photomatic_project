@@ -21,7 +21,7 @@
 ***/
 
 .error {
-    color: white;
+    color:  #4fabc9;
     text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
 		text-align: center;
 }
@@ -206,12 +206,17 @@ margin-right: auto;
 
 }
 
+.file {
+	width: 100%;
+}
+
 /*
 ** Comments and Likes on the Photo page
 ***/
 
 .likes {
 	text-align: center;
+	font-size: 18px;
 }
 
 #comment {
@@ -235,7 +240,7 @@ margin-right: auto;
 	display: block;
 	height: 30%;
 	width: 40%*/
-}
+/*}*/
 
 .comments-comment-text {
 	padding: 3px 75px 75px 3px;

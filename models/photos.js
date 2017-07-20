@@ -48,7 +48,7 @@ Photos.prototype.getThumbnailSrc = function() {
 		return filePath;
 	}
 	else {
-		return "/icons/file.svg";
+		return '/app-images/photomatic.jpg';
 	}
 };
 

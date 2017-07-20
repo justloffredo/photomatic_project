@@ -26,6 +26,8 @@ function renderPhoto(res, photoId, req) {
 				}
 			renderTemplate(res, "photo", "Photo", {
 				username: req.user.get("username"),
+				id: req.user.get("id"),
+
 				photo: photo,
 				comments: comments,
 				likes: likes,
