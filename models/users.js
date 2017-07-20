@@ -88,9 +88,12 @@ User.prototype.comparePassword = function(pw) {
 };
 
 
-User.prototype.upload = function(file, req) {
+User.prototype.upload = function(file, req, res) {
 	let photo;
-	return this.createPhoto({
+
+
+
+		return this.createPhoto({
 			id: file.id,
 			size: file.size,
 			originalName: file.originalname,
@@ -104,26 +107,30 @@ User.prototype.upload = function(file, req) {
 			const ext = path.extname(file.originalname);
 			const dest = "assets/files/" + file.filename + ext;
 			return fs.copy(file.path, dest);
-
 		})
 		.then(function() {
 			// If I'm an image, we should generate thumbnail
 			// and preview images as well.
 			if (file.mimetype.includes("image/")) {
 				return Jimp.read(file.path).then(function(img) {
-						img.quality(80).resize(Jimp.AUTO, 400);
-						return img.write("assets/previews/" + file.filename + ".jpg");
-					})
-					.then(function(img) {
-						img.cover(400, 300);
-						return img.write("assets/thumbnails/" + file.filename + ".jpg");
-					});
+					img.quality(80).resize(Jimp.AUTO, 400);
+					return img.write("assets/previews/" + file.filename + ".jpg");
+				})
+				.then(function(img) {
+					img.cover(400, 300);
+					return img.write("assets/thumbnails/" + file.filename + ".jpg");
+				});
+			}
+		})
+		.then(function() {
+			return photo;
+		});
+	
 
-				}
-			})
-			.then(function() {
-				return photo;
-			});
+
+
+
+
 
 };
 

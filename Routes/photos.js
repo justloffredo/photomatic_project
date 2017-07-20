@@ -45,10 +45,10 @@ router.get("/upload", function(req, res) {
 // Upload the form at GET /upload
 router.post("/upload", uploader.single("file"), function(req, res) {
 // Make sure they sent a file
-	if (!req.file) {
+	if (!req. file.mimetype.includes("image/")) {
 		return renderTemplate(res, "upload", "Upload", {
 			username: req.user.get("username"),
-			error: "You must choose a file to upload",
+			error: "You must choose a photo to upload",
 		});
 	}
 
