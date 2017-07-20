@@ -13,7 +13,7 @@
 
 	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 
-	<% if (photo.userId === 5) { %>
+	<% if (photo.userId === args.id) { %>
 
 		<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">REMOVE PHOTO</a>
 	<% } %>
