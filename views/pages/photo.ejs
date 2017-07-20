@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" types="text.css" href="/css/normalize.css">
 <link rel="stylesheet" types="text.css" href="/css/skeleton.css">
 <link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
@@ -11,38 +10,36 @@
 
 
 
-<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+
+	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+
+	<% if (photo.userId === 5) { %>
+
+		<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">REMOVE PHOTO</a>
+	<% } %>
+
+	<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+	<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+	<button class = "photo-like">
+	<span class= "likes fa fa-heart"> <%- likes %></span>
+</button>
+	</form>
+
+
+
+
 
 <p class=  "photo-description"> <%- photo.get("description") %></p>
 
-
-
-			<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">DELETE</a>
-
-
-
-				<div class="likes"><%- likes %> <button class = "photo-like">Like</button>
-					<form id ="btn-like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
-						<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
-
-				</div>
-					</form>
-
-
-
 </div>
-	</div>
-		</div>
-
-
-					<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
-
 
 <div class="commentcontainer">
+	<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
+
 	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
-		 	<b><font color="blue"><%= args.username %></font></b>
+		 	<b><font color="#4fabc9"><%= args.username %> says:</font></b>
 			 <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
@@ -51,8 +48,5 @@
  <% } else { %>
 	 <p class="comments-empty">No comments here!</p>
  <% } %>
-	</div>
+</div>
 <script src="/js/delete.js"></script>
-</div>
-</div>
-</div>

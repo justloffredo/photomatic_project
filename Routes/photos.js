@@ -19,6 +19,8 @@ router.get("/gallery", function(req, res) {
 		renderTemplate(res, "gallery", "Gallery", {
 			username: req.user.get("username"),
 			photos: photos,
+			id: req.user.get("id"),
+
 		});
 	});
 });
@@ -39,16 +41,19 @@ router.get("/upload", function(req, res) {
 	// renderTemplate(req, res, "Upload a File", "upload");
 	renderTemplate(res, "upload", "Upload", {
 		username: req.user.get("username"),
+		id: req.user.get("id"),
+
 	});
 });
 
 // Upload the form at GET /upload
 router.post("/upload", uploader.single("file"), function(req, res) {
 // Make sure they sent a file
-	if (!req.file) {
+	if (!req.file || !req. file.mimetype.includes("image/")) {
 		return renderTemplate(res, "upload", "Upload", {
 			username: req.user.get("username"),
-			error: "You must choose a file to upload",
+			id: req.user.get("id"),
+			error: "You must choose a photo to upload",
 		});
 	}
 
