@@ -4,6 +4,7 @@ const renderTemplate = require("./renderTemplate.js");
 function renderPhoto(res, photoId, req) {
 	let photo;
 	let comments;
+	let likes;
 
 	Photos.findById(photoId)
 		.then(function(foto) {
@@ -19,9 +20,14 @@ function renderPhoto(res, photoId, req) {
 			comments = com;
 			return photo.getLikes();
 			})
-		.then(function(likes) {
+			.then(function(like) {
+				for (let i = 0; i < like.length; i++) {
+					likes = i + 1;
+				}
 			renderTemplate(res, "photo", "Photo", {
 				username: req.user.get("username"),
+				id: req.user.get("id"),
+
 				photo: photo,
 				comments: comments,
 				likes: likes,

@@ -43,12 +43,12 @@ Photos.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
 	const filePath = "/thumbnails/" + this.get("filename") + ".jpg";
-	console.log(filePath);
+	// console.log(filePath);
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
 	else {
-		return "/icons/file.svg";
+		return '/app-images/photomatic.jpg';
 	}
 };
 
