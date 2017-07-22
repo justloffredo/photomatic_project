@@ -214,6 +214,30 @@ margin-right: auto;
 ** Comments and Likes on the Photo page
 ***/
 
+.commentcontainer {
+	float: left;
+}
+
+.username {
+	text-align: center;
+	font-weight: bold;
+	color: #4fabc9;
+}
+
+.comments-comment-text {
+	word-wrap: break-word;
+}
+
+.userexp {
+	margin: auto;
+	width: 41%;
+	display: block;
+}
+
+.photo-like, .delete-button.button, .comment {
+	float: left;
+}
+
 .likes {
 	text-align: center;
 	font-size: 18px;
@@ -233,6 +257,11 @@ margin-right: auto;
 .photo-full {
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.comment {
+	background-color: #4fabc9;
+	flex-wrap: wrap;
 }
 
 /*.comments-comment {
@@ -260,7 +289,7 @@ a:link {
 
 .photo-like {
 	background-color: #4fabc9;
-	float: inherit;
+	flex-wrap: wrap;
 }
 
 #btn-like {
@@ -318,8 +347,8 @@ button {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 30%;
 	background-color: #4fabc9;
+	flex-wrap: wrap;
 }
 
 /**********************
