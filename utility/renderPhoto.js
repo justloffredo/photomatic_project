@@ -1,5 +1,7 @@
 const Photos = require("../models/photos.js");
 const renderTemplate = require("./renderTemplate.js");
+const User = require("../models/users.js");
+const Comment = require("../models/comments.js");
 
 function renderPhoto(res, photoId, req) {
 	let photo;
@@ -7,27 +9,25 @@ function renderPhoto(res, photoId, req) {
 	let likes;
 
 	Photos.findById(photoId)
-		.then(function(foto) {
-			if(foto) {
-				photo = foto;
-				return photo.getComments();
-			}
-			else {
+	.then(function(foto) {
+		if (foto) {
+			photo = foto;
+			return photo.getComments({ include: [User] });
+		}
+		else {
 				throw new Error("Missing Photo!");
-			}
-		})
+		}
+	})
 		.then(function(com) {
 			comments = com;
+			console.log(comments);
 			return photo.getLikes();
-			})
-			.then(function(like) {
-				for (let i = 0; i < like.length; i++) {
-					likes = i + 1;
-				}
+		})
+		.then(function(like) {
+			for (let i = 0; i < like.length; i++) {
+				likes = i + 1;
+			}
 			renderTemplate(res, "photo", "Photo", {
-				username: req.user.get("username"),
-				id: req.user.get("id"),
-
 				photo: photo,
 				comments: comments,
 				likes: likes,

@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const fs = require("fs-extra");
 
 const Photos = require("./photos");
-const Comments = require("./comments");
+const Comment = require("./comments");
 const path = require("path");
 const Jimp = require("jimp");
 const BodyParser = require("body-parser");
@@ -45,7 +45,9 @@ const User = sql.define("user", {
 });
 
 User.hasMany(Photos);
-User.hasMany(Comments);
+User.hasMany(Comment);
+Comment.belongsTo(User);
+Photos.belongsTo(User);
 
 User.signup = function(req) {
 	return User.create({
@@ -125,7 +127,7 @@ User.prototype.upload = function(file, req, res) {
 		.then(function() {
 			return photo;
 		});
-	
+
 
 
 
