@@ -81,6 +81,7 @@ router.post("/comment", function(req,res) {
 		if (photo) {
 			photo.createComment({
 				text: req.body.text,
+				userId: req.session.userid,
 			})
 			.then(function() {
 				res.redirect("/photo/photo/" + photo.get("id"));
