@@ -47,6 +47,7 @@ const User = sql.define("user", {
 User.hasMany(Photos);
 User.hasMany(Comment);
 Comment.belongsTo(User);
+Photos.belongsTo(User);
 
 User.signup = function(req) {
 	return User.create({
