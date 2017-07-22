@@ -41,6 +41,10 @@
 	<% if (comments && comments.length) { %>
 	 <% for (let i = 0; i < comments.length; i++) { %>
 		 <div class="comments-comment">
+<<<<<<< HEAD
+=======
+		 	<b><font color="#4fabc9"><%= comments[i].user.get("username") %> says:</font></b>
+>>>>>>> b3703b1d4aef1ba7b64719a3cf7404148f398f69
 			 <div class="comments-comment-text">
 				 <%- comments[i].get("text") %>
 			 </div>
