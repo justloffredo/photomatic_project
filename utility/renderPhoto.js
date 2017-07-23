@@ -32,6 +32,7 @@ function renderPhoto(res, photoId, req) {
 				likes: likes,
 				id: req.user.get("id"),
 				username: req.user.get("username"),
+
 			});
 		})
 		.catch(function(err) {
