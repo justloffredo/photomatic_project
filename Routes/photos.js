@@ -96,6 +96,8 @@ router.get("/comment/:photoId", function(req, res) {
 	Photo.findById(req.params.photoId).then(function(photo) {
 	renderTemplate(res, "commentForm", "Comment", {
 		photo: photo,
+		username: req.user.get("username"),
+
 		});
 	});
 });

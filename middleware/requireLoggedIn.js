@@ -3,8 +3,8 @@ function requireLoggedIn (req, res, next) {
 			next();
 		}
 		else {
-			res.redirect("/");
+			res.redirect("/photo/gallery");
 		}
 }
 
-module.exports = requireLoggedIn;	
+module.exports = requireLoggedIn;

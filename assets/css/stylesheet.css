@@ -182,6 +182,11 @@ input, textarea
 **
 ***/
 
+.upload-container {
+	background: url('/app-images/vpolaroid.jpg') center center fixed;
+
+}
+
 .upload {
 position: absolute;
 margin: 0 auto;
