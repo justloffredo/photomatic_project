@@ -264,12 +264,9 @@ margin-right: auto;
 	flex-wrap: wrap;
 }
 
-/*.comments-comment {
-	text-align: center;
-	display: block;
-	height: 30%;
-	width: 40%*/
-/*}*/
+.comments-comment {
+	word-wrap: break-word;
+}
 
 .comments-comment-text {
 	padding: 3px 75px 75px 3px;
@@ -349,6 +346,12 @@ button {
 	margin-right: auto;
 	background-color: #4fabc9;
 	flex-wrap: wrap;
+}
+
+.userexp {
+	display: block;
+  margin-left: auto;
+  margin-right: auto
 }
 
 /**********************

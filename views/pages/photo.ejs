@@ -13,14 +13,14 @@
 
 </div>
 
-<div class = "userexp">
-        <% if (photo.userId === args.id) { %>
 
-            <button class="delete-button button" name="delete"
-                data-photoid="<%- photo.get("id") %>">
-                    REMOVE PHOTO</button>
+<div class="container">
+	<div class="nine column">
+		<div class = "userexp">
 
-        <% } %>
+			<% if (photo.userId === args.id) { %>
+			<a class="delete-button button" name="delete" data-photoid="<%- photo.get("id") %>">REMOVE PHOTO</a>
+			<% } %>
 
             <form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
                 <input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
@@ -31,9 +31,8 @@
 
             <a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
 </div>
-
-
-
+	</div>
+		</div>
 
 
 
@@ -56,3 +55,7 @@
  <% } %>
 
 <script src="/js/delete.js"></script>
+
+</div>
+	</div>
+</div>
