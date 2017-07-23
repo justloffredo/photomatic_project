@@ -20,7 +20,6 @@ router.get("/gallery", function(req, res) {
 			username: req.user.get("username"),
 			photos: photos,
 			id: req.user.get("id"),
-
 		});
 	});
 });

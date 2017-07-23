@@ -8,14 +8,14 @@ function renderPhoto(res, photoId, req) {
 	let comments;
 	let likes;
 
-	Photos.findById(photoId)
+	Photos.findById(req.params.photoId)
 	.then(function(foto) {
 		if (foto) {
 			photo = foto;
 			return photo.getComments({ include: [User] });
 		}
 		else {
-				throw new Error("Missing Photo!");
+				res.render("./pages/404");
 		}
 	})
 		.then(function(com) {
@@ -31,6 +31,7 @@ function renderPhoto(res, photoId, req) {
 				comments: comments,
 				likes: likes,
 				id: req.user.get("id"),
+				username: req.user.get("username"),
 			});
 		})
 		.catch(function(err) {
