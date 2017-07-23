@@ -7,51 +7,52 @@
 <div class="full-photo">
 
 
-	<img class="photo-full" src="<%- photo.getPreviewSrc() %>"></img>
+    <img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 
-			<p class=  "photo-description"> <%- photo.get("description") %></p>
+            <p class=  "photo-description"> <%- photo.get("description") %></p>
 
 </div>
 
 <div class = "userexp">
-		<% if (photo.userId === args.id) { %>
+        <% if (photo.userId === args.id) { %>
 
-			<button class="delete-button button" name="delete"
-				data-photoid="<%- photo.get("id") %>">
-					REMOVE PHOTO</button>
+            <button class="delete-button button" name="delete"
+                data-photoid="<%- photo.get("id") %>">
+                    REMOVE PHOTO</button>
 
-		<% } %>
+        <% } %>
 
-			<form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
-				<input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
-					<button class = "photo-like">
-					<span class= "likes fa fa-heart"> <%- likes %></span>
-					</button>
-			</form>
+            <form id = "btn like" method= "POST" action= "/photo/like/<%- photo.get("id") %>">
+                <input name="photoid" type="hidden" value="<%- photo.get("id") %>"/>
+                    <button class = "photo-like">
+                    <span class= "likes fa fa-heart"> <%- likes %></span>
+                    </button>
+            </form>
 
-			<a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
+            <a href = "/photo/comment/<%- photo.get("id") %>"><button class="comment">Comment</button></a>
 </div>
 
 
 
 
 
-<div class ="username"><%= args.username %> says:</div
 
-	<% if (comments && comments.length) { %>
-	 <% for (let i = 0; i < comments.length; i++) { %>
-		 <div class="comments-comment">
-<<<<<<< HEAD
-=======
-		 	<b><font color="#4fabc9"><%= comments[i].user.get("username") %> says:</font></b>
->>>>>>> b3703b1d4aef1ba7b64719a3cf7404148f398f69
-			 <div class="comments-comment-text">
-				 <%- comments[i].get("text") %>
-			 </div>
-		 </div>
-	 <% } %>
+
+    <% if (comments && comments.length) { %>
+     <% for (let i = 0; i < comments.length; i++) { %>
+         <div class="comments-comment">
+
+            <div class ="username">
+             <b><font color="#4fabc9"><%= comments[i].user.get("username") %> says:</font></b>
+            </div>
+
+             <div class="comments-comment-text">
+                 <%- comments[i].get("text") %>
+             </div>
+         </div>
+     <% } %>
  <% } else { %>
-	 <p class="comments-empty">No comments here!</p>
+     <p class="comments-empty">No comments here!</p>
  <% } %>
 
 <script src="/js/delete.js"></script>
