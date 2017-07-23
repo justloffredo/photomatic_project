@@ -31,6 +31,8 @@ function renderPhoto(res, photoId, req) {
 				comments: comments,
 				likes: likes,
 				id: req.user.get("id"),
+				username: req.user.get("username"),
+
 			});
 		})
 		.catch(function(err) {
