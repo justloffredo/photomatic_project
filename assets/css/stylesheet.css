@@ -182,6 +182,11 @@ input, textarea
 **
 ***/
 
+.upload-container {
+	background: url('/app-images/vpolaroid.jpg') center center fixed;
+
+}
+
 .upload {
 position: absolute;
 margin: 0 auto;
@@ -327,6 +332,15 @@ button {
 	text-align: center;
 }
 
+.description-container {
+
+}
+
+.photo-description-edit {
+	height: 14px;
+	width: 600px;
+}
+
 .gallery-image {
 	padding-top: 10px;
 }
@@ -339,6 +353,15 @@ button {
   margin-right: auto;
 }
 
+
+.edit-button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #4fabc9;
+	flex-wrap: wrap;
+	width: 200px;
+}
 
 .delete-button.button {
 	display: block;

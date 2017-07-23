@@ -8,9 +8,17 @@
 
 
     <img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
+		<div class="container description-container">
+			<%# <form class="edit" enctype="multipart/form-data" method="put">%>
 
-            <p class=  "photo-description"> <%- photo.get("description") %></p>
-
+			<% if (photo.userId === args.id) { %>
+				<a class="edit-button button" name="update" data-photoid="<%- photo.get("id") %>">Update Description</a>
+				<textarea class=  "photo-description-edit"> <%- photo.get("description") %></textarea>
+			<% } else { %>
+				<p class=  "photo-description"> <%- photo.get("description") %></p>
+				<% } %>
+			<%# </form>%>
+		</div>
 </div>
 
 

@@ -15,7 +15,8 @@ function renderPhoto(res, photoId, req) {
 			return photo.getComments({ include: [User] });
 		}
 		else {
-				res.render("./pages/404");
+			res.redirect("/photo/gallery");
+			throw new Error("Missing Photo");
 		}
 	})
 		.then(function(com) {

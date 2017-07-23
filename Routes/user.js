@@ -29,7 +29,7 @@ router.post("/signup", function(req, res) {
 	else {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/photo/upload");
+				res.redirect("/photo/gallery");
 			})
 			.catch(function(err) {
 				res.status(400);
@@ -53,7 +53,7 @@ router.post("/login", function(req, res) {
 	User.login(req)
 		.then(function() {
 			req.session.user;
-			res.redirect("/photo/upload");
+			res.redirect("/photo/gallery");
 		})
 		.catch(function(err) {
 			res.status(400);
@@ -69,7 +69,7 @@ router.post("/login", function(req, res) {
 router.get("/logout", function(req, res) {
 	req.session.destroy(function(err) {
 		if (err) throw err;
-		res.redirect("/user/signup");
+		res.redirect("/user/login");
 	});
 	console.log(req.session);
 });
