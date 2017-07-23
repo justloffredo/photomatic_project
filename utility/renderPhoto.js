@@ -20,7 +20,6 @@ function renderPhoto(res, photoId, req) {
 	})
 		.then(function(com) {
 			comments = com;
-			console.log(comments);
 			return photo.getLikes();
 		})
 		.then(function(like) {
@@ -31,6 +30,7 @@ function renderPhoto(res, photoId, req) {
 				photo: photo,
 				comments: comments,
 				likes: likes,
+				id: req.user.get("id"),
 			});
 		})
 		.catch(function(err) {
