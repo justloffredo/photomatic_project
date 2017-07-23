@@ -72,6 +72,34 @@ router.get("/photo/:photoId", function(req, res) {
 	renderPhoto(res, req.params.photoId, req);
 });
 
+// router.route('/photo/:photoId')
+//
+//
+//     .get(function(req, res) {
+//
+//     })
+//
+//     .put(function(req, res) {
+//
+//         Photo.findById(req.params.photoId, function(err, photo) {
+//
+//             if (err)
+//                 res.send(err);
+//
+//             description = req.body.description;  // update
+//
+//             photo.save(function(err) {
+//                 if (err)
+//                     res.send(err);
+//
+//                 res.json({ message: 'Post  updated!' });
+//             });
+//
+//         });
+//     });
+
+
+
 router.post("/comment", function(req,res) {
 	if (!req.body.photoId || !req.body.text) {
 		return res.status(500).send("Missing required comment field");
