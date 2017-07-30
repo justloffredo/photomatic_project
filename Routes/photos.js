@@ -72,31 +72,30 @@ router.get("/photo/:photoId", function(req, res) {
 	renderPhoto(res, req.params.photoId, req);
 });
 
-// router.route('/photo/:photoId')
-//
-//
-//     .get(function(req, res) {
-//
-//     })
-//
-//     .put(function(req, res) {
-//
-//         Photo.findById(req.params.photoId, function(err, photo) {
-//
-//             if (err)
-//                 res.send(err);
-//
-//             description = req.body.description;  // update
-//
-//             photo.save(function(err) {
-//                 if (err)
-//                     res.send(err);
-//
-//                 res.json({ message: 'Post  updated!' });
-//             });
-//
-//         });
-//     });
+router.post("/update/:photoId", function(req, res) {
+	if (!req.params.photoId) {
+		return res.status(500).send("Missing photo Id");
+	}
+	Photo.findById(req.params.photoId).then(function(photo) {
+			if (photo) {
+				 photo.update({
+					 description : req.body.update,
+				 })
+				.then(function() {
+					res.redirect("/photo/photo/" + photo.get("id"));
+				})
+			.catch(function(error) {
+				res.status(400);
+			});
+			}
+		else {
+				res.render(404);
+			};
+	});
+});
+
+
+
 
 
 
