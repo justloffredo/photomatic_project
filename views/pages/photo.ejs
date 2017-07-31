@@ -9,15 +9,15 @@
 
     <img class="photo-full" src="<%- photo.getPreviewSrc() %>"/>
 		<div class="container description-container">
-			<%# <form class="edit" enctype="multipart/form-data" method="put">%>
-
-			<% if (photo.userId === args.id) { %>
-				<a class="edit-button button" name="update" data-photoid="<%- photo.get("id") %>">Update Description</a>
-				<textarea class=  "photo-description-edit"> <%- photo.get("description") %></textarea>
-			<% } else { %>
+      <% if (photo.userId === args.id) { %>
+			    <form class="edit" name = "update" action= "/photo/update/<%- photo.get("id") %>"   method="POST">
+            <button class="edit-button button">Update Description</button>
+            <textarea class=  "photo-description-edit" name = "update"> <%- photo.get("description") %></textarea>
+          </form>
+        <% } else { %>
 				<p class=  "photo-description"> <%- photo.get("description") %></p>
 				<% } %>
-			<%# </form>%>
+
 		</div>
 </div>
 
@@ -63,6 +63,7 @@
  <% } %>
 
 <script src="/js/delete.js"></script>
+<script src="/js/descriptionUpdate.js"></script>
 
 </div>
 	</div>
