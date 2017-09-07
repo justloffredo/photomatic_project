@@ -8,7 +8,7 @@ const connectSessionSequelize = require('connect-session-sequelize');
 
 const sql = require('./utility/sql.js');
 const deserializeUserMW = require('./middleware/deSerialize.js');
-const renderTemplate = require("./utility/renderTemplate.js");
+const renderUserTemp = require("./utility/renderauth.js");
 
 const app = express();
 //References app.use(cookieParser...) and app.us(session...) below
@@ -19,11 +19,12 @@ const photoRoutes = require("./Routes/photos.js");
 const userRoutes = require("./Routes/user.js");
 const apiRoutes = require("./Routes/api");
 
-
+// const renderUserTemp = require("../utility/renderauth.js");
 
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser(cookieSecret));
 app.use(session({
 	secret: cookieSecret,
@@ -34,18 +35,20 @@ app.use(deserializeUserMW);
 
 
 
-
+app.get("/", function (req, res) {
+	res.render("pages/home");
+});
 
 
 app.use("/api", apiRoutes);
 app.use("/user", userRoutes);
 app.use("/photo", photoRoutes);
 app.get("*", function(req, res) {
-	renderTemplate(res,"404");
+	renderUserTemp(res,"404");
 });
 
 
-sql.sync( ).then(function() {
+sql.sync().then(function() {
 	console.log("Database synced");
 	const port = process.env.PORT || 3000;
 

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const User = require("../models/users.js");
 const renderUserTemp = require("../utility/renderauth.js");
@@ -15,15 +16,20 @@ router.get("/signup", function(req, res, error) {
 });
 
 router.post("/signup", function(req, res) {
+	if (req.body.username === "" || req.body.password === "" || req.body.confirmpassword === "") {
+		return renderUserTemp(res, "signup", "Signup", {
+			error: "Please fill in all required fields",
+		});
+	}
 	if (req.body.password !== req.body.confirmpassword) {
-		renderUserTemp(res, "signup", "Signup", {
+		return renderUserTemp(res, "signup", "Signup", {
 			error: "Your password fields do no match",
 		});
 	}
 	else {
 			User.signup(req)
 			.then(function() {
-				res.redirect("/user/login");
+				res.redirect("/photo/gallery");
 			})
 			.catch(function(err) {
 				res.status(400);
@@ -47,7 +53,7 @@ router.post("/login", function(req, res) {
 	User.login(req)
 		.then(function() {
 			req.session.user;
-			res.redirect("/photo/upload");
+			res.redirect("/photo/gallery");
 		})
 		.catch(function(err) {
 			res.status(400);
@@ -63,7 +69,7 @@ router.post("/login", function(req, res) {
 router.get("/logout", function(req, res) {
 	req.session.destroy(function(err) {
 		if (err) throw err;
-		res.redirect("/user/signup");
+		res.redirect("/user/login");
 	});
 	console.log(req.session);
 });
