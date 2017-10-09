@@ -35,13 +35,40 @@ router.post("/login", function(req, res) {
 		});
 	});
 
+	router.post("/photo/:photoId", function(req, res) {
+		Photo.findById(req.params.photoId)
+			.then(function(photo) {
+				if (photo) {
+					photo.description = req.body.description;
+					res.json({ photo: photo });
 
-router.delete("/photo/:photoId", function(req,res) {
+
+
+				}
+				else {
+					res.status(404);
+					res.json({ error: "Unable to find photo with " + req.params.photoId });
+				}
+			})
+			.catch(function(err) {
+				res.status(500);
+				res.json({ error: "Unable to delete file" });
+			});
+
+
+
+	});
+
+
+router.delete("/photo/:photoId", function(req, res) {
 	Photo.findById(req.params.photoId)
 		.then(function(photo) {
 			if (photo) {
 				photo.destroy();
 				res.json({ photo: photo });
+
+
+
 			}
 			else {
 				res.status(404);
@@ -52,6 +79,9 @@ router.delete("/photo/:photoId", function(req,res) {
 			res.status(500);
 			res.json({ error: "Unable to delete file" });
 		});
+
+
+
 });
 
 

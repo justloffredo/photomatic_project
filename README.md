@@ -171,3 +171,10 @@
 
 * Instagram at (www.instagram.com)
 * Flickr at (www.flickr.com)
+
+## Heroku Address for Photomatic
+
+* https://photoproject.herokuapp.com/
+* To test the app, please use the following information:
+username: test
+password: test 

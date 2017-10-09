@@ -1,3 +1,8 @@
+
+<link rel="stylesheet" types="text.css" href="/css/stylesheet.css">
+<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+
 <form class = "Form" method = "post" id = "signup-form">
 	<% if(typeof error !== undefined) { %>
 		<div class= "error"><%= error %></div>
@@ -10,7 +15,7 @@
 		<input class="signup-password" type="password" name = "password" placeholder="Please Enter A Password"></input><br>
 
 		Password Confirmation
-		<input class="signup-conf-password" type="password" name = "signup-conf-password" placeholder="Please Re-Enter the Password"></input><br>
+		<input class="signup-conf-password" type="password" name = "confirmpassword" placeholder="Please Re-Enter the Password"></input><br>
 
 	<button class ="submit">Submit</button>
 </form>

@@ -2,13 +2,28 @@
 	box-sizing: border-box;
 }
 
+/*
+** LANDING PAGE
+***/
+
+.message {
+	text-align: center;
+	margin: 150px auto;
+	height: 200px;
+	width: 600px;
+	font-size: 45px;
+	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+	color: white;
+}
+
 /* ERROR PAGE TEXT
 **
 ***/
 
 .error {
-    color: white;
+    color:  #4fabc9;
     text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+		text-align: center;
 }
 
 .errorphoto {
@@ -36,7 +51,10 @@
 	padding: 0;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-image: url('/app-images/photomatic.jpg') center center fixed;
+	background: url('/app-images/photomatic.jpg') center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 #back-image {
@@ -46,27 +64,36 @@
 
 .template-header {
 	background-color: #191919;
-	height: 12%;
+	width: 100%;
+	height: 9%;
 	opacity: 0.6;
 	text-align: right;
-	padding: 10px 10px 10px;
+	padding: 10px 10px 10px 10px;
 	color: white;
+	position: fixed;
 }
 
 .template {
 	flex: 1 0	auto;
 	text-align: center;
-	min-height: 100%;
+	min-height: 8%;
 	width: 100%;
 	margin: auto;
 }
 
 #signup {
 	background-color: #4fabc9;
+	color: white;
 }
 
 #login {
 	color: white;
+	background-color: #4fabc9;
+}
+
+#logout {
+	color: white;
+	background-color: #4fabc9;
 }
 
 i {
@@ -81,6 +108,7 @@ i {
 	padding-left: 10px;
 	font-size: 22px;
 	text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
+	text-decoration: none;
 }
 
 .welcome {
@@ -94,11 +122,21 @@ footer {
 color: white;
 text-shadow: 0px 0px 18px rgba(0,0,0,0.9);
 text-align: center;
+position: fixed;
+bottom: 0;
+width: 100%;
 }
 
 /*Login Form & Sign Up Form
 **
 ***/
+
+.welcome {
+	float: left;
+	font-weight: normal;
+	padding-left: 10px;
+	font-size: 22px;
+}
 
 .Form {
 	position: absolute;
@@ -125,12 +163,16 @@ text-align: center;
 	font-style: italic;
 }
 
-input,
-			button {
+input, textarea
+			 {
 				display: block;
-				width: 100%;
+				width: 60%;
 				height: 40%;
+				display: block;
+			  margin-left: auto;
+			  margin-right: auto;
 			}
+
 
 .submit {
 	background-color: #4fabc9;
@@ -140,6 +182,219 @@ input,
 **
 ***/
 
+.upload-container {
+	background: url('/app-images/vpolaroid.jpg') center center fixed;
+
+}
+
+.upload {
+position: absolute;
+margin: 0 auto;
+width: 30%;
+padding: 20px;
+background: #FFF;
+border: 1px solid #CCC;
+border-radius: 6px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 18px;
+color: black;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
 #upload {
 	background-color: #4fabc9;
+	color: white;
+
+}
+
+.file {
+	width: 100%;
+}
+
+/*
+** Comments and Likes on the Photo page
+***/
+
+.commentcontainer {
+	float: left;
+}
+
+.username {
+	text-align: center;
+	font-weight: bold;
+	color: #4fabc9;
+}
+
+.comments-comment-text {
+	word-wrap: break-word;
+}
+
+.userexp {
+	margin: auto;
+	width: 41%;
+	display: block;
+}
+
+.photo-like, .delete-button.button, .comment {
+	float: left;
+}
+
+.likes {
+	text-align: center;
+	font-size: 18px;
+}
+
+#comment {
+	text-align: center;
+	padding-top: 30px;
+	font-size: 45px;
+	font-weight: bold;
+}
+
+.comments-empty {
+	text-align: center;
+}
+
+.photo-full {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.comment {
+	background-color: #4fabc9;
+	flex-wrap: wrap;
+}
+
+.comments-comment {
+	word-wrap: break-word;
+}
+
+.comments-comment-text {
+	padding: 3px 75px 75px 3px;
+	text-align: center;
+	/*display: block;
+	height: 30%;
+	width: 40%*/
+}
+
+.commentcontainer {
+	text-align: center;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.photo-like {
+	background-color: #4fabc9;
+	flex-wrap: wrap;
+}
+
+#btn-like {
+	text-align: center;
+	position: fixed;
+	bottom: 20px;
+	width: 100%;
+}
+
+
+/*
+** GALLERY IMAGE AND PHOTO PAGE
+***/
+
+img {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	float: inherit;
+}
+
+.photo-full {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-description {
+	/*display: block;
+  margin-left: auto;
+  margin-right: auto;*/
+	text-align: center;
+}
+
+.description-container {
+
+}
+
+.photo-description-edit {
+	height: 14px;
+	width: 600px;
+}
+
+.gallery-image {
+	padding-top: 10px;
+}
+
+#gallery {
+	background-color: #4fabc9;
+	color: white;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.edit-button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #4fabc9;
+	flex-wrap: wrap;
+	width: 200px;
+}
+
+.delete-button.button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #4fabc9;
+	flex-wrap: wrap;
+}
+
+.userexp {
+	display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+/**********************
+******** PREVIEW ******
+************************/
+
+h5 {
+	text-align: center;
+}
+
+a.document-download.button {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	background-color: #4fabc9;
+	width: 10%;
+	color: white;
+	text-align: center;
+}
+
+.document-preview {
+	padding-top: 17px;
 }

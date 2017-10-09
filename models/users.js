@@ -4,10 +4,10 @@ const Sequelize = require("sequelize");
 const fs = require("fs-extra");
 
 const Photos = require("./photos");
-const Comments = require("./comments");
+const Comment = require("./comments");
 const path = require("path");
 const Jimp = require("jimp");
-
+const BodyParser = require("body-parser");
 
 function hashUserPassword(user) {
 	if (user.password) {
@@ -45,7 +45,9 @@ const User = sql.define("user", {
 });
 
 User.hasMany(Photos);
-User.hasMany(Comments);
+User.hasMany(Comment);
+Comment.belongsTo(User);
+Photos.belongsTo(User);
 
 User.signup = function(req) {
 	return User.create({
@@ -57,6 +59,7 @@ User.signup = function(req) {
 			return user;
 		});
 };
+
 
 User.login = function(req) {
 	return User.findOne({
@@ -70,7 +73,8 @@ User.login = function(req) {
 					if (valid) {
 						req.session.userid = user.get("id");
 						return user;
-					} else {
+					}
+					else {
 						throw new Error("Incorrect password");
 					}
 				});
@@ -86,16 +90,22 @@ User.prototype.comparePassword = function(pw) {
 };
 
 
-User.prototype.upload = function(file, req) {
-	return this.createPhoto({
+User.prototype.upload = function(file, req, res) {
+	let photo;
+
+
+
+		return this.createPhoto({
 			id: file.id,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
-			description: file.description,
+			description: req.body.description,
 			filename: file.filename,
 		})
-		.then(function() {
+
+		.then(function(p) {
+			photo = p;
 			const ext = path.extname(file.originalname);
 			const dest = "assets/files/" + file.filename + ext;
 			return fs.copy(file.path, dest);
@@ -104,16 +114,28 @@ User.prototype.upload = function(file, req) {
 			// If I'm an image, we should generate thumbnail
 			// and preview images as well.
 			if (file.mimetype.includes("image/")) {
-				Jimp.read(file.path).then(function(img) {
-						img.quality(80).resize(Jimp.AUTO, 400);
-						return img.write("assets/previews/" + file.filename + ".jpg");
-					})
-					.then(function(img) {
-						img.cover(64, 64);
-						return img.write("assets/thumbnails/" + file.filename + ".jpg");
-					});
+				return Jimp.read(file.path).then(function(img) {
+					img.quality(80).resize(Jimp.AUTO, 400);
+					return img.write("assets/previews/" + file.filename + ".jpg");
+				})
+				.then(function(img) {
+					img.cover(400, 300);
+					return img.write("assets/thumbnails/" + file.filename + ".jpg");
+				});
 			}
+		})
+		.then(function() {
+			return photo;
 		});
+
+
+
+
+
+
+
 };
+
+
 
 module.exports = User;

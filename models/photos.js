@@ -1,8 +1,10 @@
 const sql = require("../utility/sql");
 const Sequelize = require("sequelize");
 const Tags = require("./tags");
-const Comments = require("./comments");
-const Likes = require("./likes");
+const Comment = require("./comments");
+const Like = require("./likes");
+const User = require("./users.js");
+
 
 const fs = require("fs");
 
@@ -41,28 +43,29 @@ Photos.prototype.getThumbnailSrc = function() {
 	// Check if I have a thumbnail available in assets/thumbnails!
 	// Otherwise return this default icon
 	const filePath = "/thumbnails/" + this.get("filename") + ".jpg";
-	console.log(filePath);
+	// console.log(filePath);
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
 	else {
-		return "/icons/file.svg";
+		return '/app-images/photomatic.jpg';
 	}
 };
 
-Photos.prototype.getPreviewSrc = function(file) {
+Photos.prototype.getPreviewSrc = function() {
 	// Check if I have a preview available in assets/previews!
 	// Otherwise return null, to display a "no preview" message
-	const filePath = "/previews/" + file.filename + ".jpg";
+	const filePath = "/previews/" +  this.get("filename") + ".jpg";
 	if (fs.existsSync("assets" + filePath)) {
 		return filePath;
 	}
 	return null;
 };
 
+
 Tags.belongsToMany(Photos, { through: "photos_tags" });
 Photos.belongsToMany(Tags, { through: "photos_tags" });
-Photos.hasMany(Comments);
-Photos.hasMany(Likes);
+Photos.hasMany(Comment);
+Photos.hasMany(Like);
 
 module.exports = Photos;
